@@ -7,11 +7,11 @@
 
 Gravity Demo site is an example website that demonstrates the use-case of pre-filling forms with CV data from [Gravity Portability](https://github.com/MagnumOpuses/gravity-portability).
 
-This website's runtime is [Node.js](https://nodejs.org/) and the webserver is built using the minimal [Express](https://expressjs.com/) web application framework.
+This website's runtime environment is [Node.js](https://nodejs.org/) and is built using the web application framework is [Express](https://expressjs.com/).
 
-Operating the website in development mode will utilize the [Nodemon](https://nodemon.io/) feature to automatically restart the server upon source code changes.
+The web pages/views are rendered using the [EJS](https://ejs.co/) template engine and [Bootstrap](http://getbootstrap.com) for responsive layouting.
 
-Views utilize the [EJS](https://ejs.co/) template engine for layouts and [Bootstrap](http://getbootstrap.com) for responsive rendering.
+Operating the website in development mode utilizes [Nodemon](https://nodemon.io/) to automatically restart the server upon source code changes.
 
 ## Versions, current dev state and future
 
@@ -35,13 +35,13 @@ cd gravity-demo-site
 npm install
 ```
 
-### Customized configuration
+#### Customized configuration
 
-Listed below are a few methods to provide custom configuration for the website to override the default properties.
+Listed below are methods of overriding the default configuration with custom properties.
 
 _Read move about environment configuration here: [dotenv](https://github.com/motdotla/dotenv)_
 
-#### Provide environment variables via configuration file
+##### Provide custom properties via configuration file
 
 Create an `.env` file at the root of the `gravity-demo-site` directory with the following content.
 
@@ -51,17 +51,17 @@ _This `.env` file is ignored by the rules set in `.gitignore`, therefore in this
 PORT=5000
 ```
 
-#### Provide environment variables via CLI
+##### Provide custom properties via CLI
 
 If needed be you may override both default and configuration file properties via CLI like this.
 
 ```
-PORT=8080 npm run dev
+PORT=5080 npm run dev
 ```
 
 ## Test
 
-Next up you may execute all test cases to ensure that all its features work as intended.
+Execute all test cases to ensure that all its features work as intended.
 
 ```
 npm test
@@ -77,13 +77,11 @@ npm start
 
 ### Deploy the site in development mode
 
-In development mode the server will automatically detect changes to the source code and restart the server.
+In development mode the [Nodemon](https://nodemon.io/) will automatically detect changes to the source code and restart the server.
 
 ```
 npm run dev
 ```
-
-There are a few ways to customize the server envionment properties.
 
 ## Built with
 
