@@ -1,0 +1,22 @@
+{
+  "name": "gravity-demo-site",
+  "version": "0.1.0",
+  "description": "Gravity Demo Site",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "",
+  "license": "Apache-2.0"
+}
