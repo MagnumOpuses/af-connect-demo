@@ -1,4 +1,12 @@
 body {
-    background-color: #eee;
     text-align: center;
+}
+
+#profileSelect .btn[aria-expanded=true] {
+    color: #fff;
+    background-color: #29a019;
+}
+
+.jumbotron {
+    padding: 1rem 1rem;
 }

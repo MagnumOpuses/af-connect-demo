@@ -5,19 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel=”stylesheet” href=”https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link href="vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="vendor/bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/main.css" rel="stylesheet"/>
     <title>Gravity Demo Site</title>
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <h2>Ansök för: JobTech Systemutvecklare</h1>
+            <div class="col-md-12 p-2">
+                <img src="/img/af-logo.svg">
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 p-2">
                 <div class="gravity-beacon"
                     data-cookie="AMV_SSO_COOKIE"
                     data-poll_rate="1000"
@@ -30,31 +30,33 @@
                     data-receive_only>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <div id="feedback" style="display: none; font-size: 24px;"></div>
-                    <div id="resultPane" style="display: none;">
-                        <div class="panel panel-success">
-                            <div class="panel-heading">
-                            <h3 class="panel-title"><strong>Your CV details</strong></h3>
-                            </div>
-                            <div class="panel-body" style="text-align: left;">
-                                <pre id="result">nothing here yet</pre>
+        </div>
+        <div class="row">
+            <div class="col-12 p-2">
+                <div id="feedback" style="display: none; font-size: 24px;"></div>
+                <div id="resultPane" style="display: none;">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                        </div>
+                        <div class="panel-body" style="text-align: left;">
+                            <div id="result">
+                                <div class="accordion" id="cvAccordion"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row" id="consentControl" style="display: none;">
-                <div class="col-md-12">
-                    <button type="button" class="btn btn-block btn-primary" onclick="location.href = '/complete'">Skicka ansökan</button>
-                </div>
+        </div>
+        <div class="row" id="consentControl" style="display: none;">
+            <div class="col-md-12 p-2">
+                <button type="button" class="btn btn-block btn-primary" onclick="location.href = '/complete'">Skicka ansökan</button>
             </div>
         </div>
     </div>
     <script src="js/main.js"></script>
     <script src="vendor/jquery-3.4.1/jquery-3.4.1.min.js"></script>
-    <script src="vendor/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="vendor/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
     <script src="vendor/gravity-beacon-0.1.0-dist/gravity-beacon.bundle.js"></script>
 </body>
 </html>

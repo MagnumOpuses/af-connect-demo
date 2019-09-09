@@ -5,45 +5,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel=”stylesheet” href=”https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link href="vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="vendor/bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/main.css" rel="stylesheet"/>
     <title>Gravity Demo Site</title>
+    <style>
+        body {
+            background-color: #c3d5da;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <h2>Ansök för: JobTech Systemutvecklare</h1>
+            <div class="col-md-12 p-2 mt-2">
+                <h3>Ansök för: JobTech Systemutvecklare</h3>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Logga in och skapa cv</h1>
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-12 p-2">
+                    <h5>Logga in och skapa cv</h5>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <input type="text" class="form-control" placeholder="Username">
-                <input type="password" class="form-control" placeholder="Password">
+            <div class="row">
+                    <div class="col-md-12 p-2">
+                        <input type="text" class="form-control" placeholder="Username" disabled>
+                    </div>
+                    <div class="col-md-12 p-2">
+                        <input type="password" class="form-control" placeholder="Password" disabled>
+                    </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <button type="button" class="btn btn-block btn-default">Logga in och gå vidare</button>
+            <div class="row">
+                <div class="col-md-12 p-2">
+                    <button type="button" class="btn btn-block btn-primary" disabled>Logga in och gå vidare</button>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                Eller
+            <div class="row">
+                <div class="col-md-12">
+                    Eller
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <button type="button" class="btn btn-block btn-primary" onclick="location.href = '/import'">Jag har redan ett CV</button>
+            <div class="row">
+                <div class="col-md-12 p-2">
+                    <button type="button" class="btn btn-block btn-primary" onclick="location.href = '/import'">Jag har redan ett CV</button>
+                </div>
             </div>
         </div>
     </div>
     <script src="vendor/jquery-3.4.1/jquery-3.4.1.min.js"></script>
-    <script src="vendor/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="vendor/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 </body>
 </html>
