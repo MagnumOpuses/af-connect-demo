@@ -1,0 +1,87 @@
+<div class="card">
+    <div class="card-header">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#personalData">Personuppgifter</button>
+    </div>
+    <div id="personalData" class="collapse p-2">
+        <div class="card">
+            <div class="card-body">
+                    <strong>Person</strong><br>
+                    <%= data.person.name.formattedName %><br>
+                    <%= data.person.legalId.valueId %><br>
+
+                    <strong>Adress</strong><br>
+                    <% data.person.communication.address.forEach((address) => { %>
+                        <%= address.line1 %>, <%= address.postalCode %>, <%= address.city %><br>
+                    <% }) %>
+                    
+                    <strong>Email</strong><br>
+                    <% data.person.communication.email.forEach((email) => { %>
+                        <%= email.address %><br>
+                    <% }) %>
+                    
+                    <strong>Telefon</strong><br>
+                    <% data.person.communication.phone.forEach((phone) => { %>
+                        <%= phone.useCode %>: <%= phone.formattedNumber %><br>
+                    <% }) %>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card-header">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#profileSelect">Välj CV profil</button>
+    </div>
+    <div id="profileSelect" class="list-group collapse show p-2">
+        <% if (data.profiles.length) { %>
+            <% for(var i=0; i<data.profiles.length; i++) {%>
+                <div class="p-2">
+                    <button class="btn btn-block btn-light" type="button" data-toggle="collapse" data-target="#profile_<%= i %>"><%= data.profiles[i].profileName %></button>
+                </div>
+                <div id="profile_<%= i %>" class="collapse p-2" data-parent="#profileSelect">
+                    <div class="card">
+                        <div class="card-body">
+                            <% if (data.profiles[i].employment) { %>
+                                <% data.profiles[i].employment.forEach((employment) => { %>
+                                    <% if (employment.title) { %>
+                                        <strong>Titel</strong><br>
+                                        <%= employment.title %><br>
+                                    <% } %>
+                                    <% if (employment.organization) { %>
+                                        <strong>Organisation</strong><br>
+                                        <%= employment.organization.name %><br>
+                                    <% } %>
+                                    <% if (employment.description) { %>
+                                        <strong>Beskrivning</strong><br>
+                                        <%= employment.description %><br>
+                                    <% } %>
+                                    <% if (employment.employmentPeriod) { %>
+                                        <strong>Period</strong><br>
+                                        <%= employment.employmentPeriod.start %> - 
+
+                                        <% if (employment.employmentPeriod.currentIndicator) { %>
+                                            Pågående
+                                        <% } else if (employment.employmentPeriod.end) { %>
+                                            <%= employment.employmentPeriod.end %>
+                                        <% } %>
+                                        <br>
+                                    <% } %>
+                                    <hr>
+                                <% }) %>
+                            <% } %>
+                            
+                            <% if (data.profiles[i].qualifications) { %>
+                                <strong>Kvalificationer</strong><br>
+                                <ul>
+                                    <% data.profiles[i].qualifications.forEach((qualification) => { %>
+                                        <% if (qualification.competencyName) { %>
+                                            <li><%= qualification.competencyName %></li>
+                                        <% } %>
+                                    <% }) %>
+                                </ul>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        <% } %>
+    </div>
+</div>
