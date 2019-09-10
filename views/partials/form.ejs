@@ -39,9 +39,45 @@
                 <div id="profile_<%= i %>" class="collapse p-2" data-parent="#profileSelect">
                     <div class="card">
                         <div class="card-body">
-                            <pre>
-                                <%= JSON.stringify(data.profiles[i], null, 2) %>
-                            </pre>
+                            <% if (data.profiles[i].employment) { %>
+                                <% data.profiles[i].employment.forEach((employment) => { %>
+                                    <% if (employment.title) { %>
+                                        <strong>Titel</strong><br>
+                                        <%= employment.title %><br>
+                                    <% } %>
+                                    <% if (employment.organization) { %>
+                                        <strong>Organisation</strong><br>
+                                        <%= employment.organization.name %><br>
+                                    <% } %>
+                                    <% if (employment.description) { %>
+                                        <strong>Beskrivning</strong><br>
+                                        <%= employment.description %><br>
+                                    <% } %>
+                                    <% if (employment.employmentPeriod) { %>
+                                        <strong>Period</strong><br>
+                                        <%= employment.employmentPeriod.start %> - 
+
+                                        <% if (employment.employmentPeriod.currentIndicator) { %>
+                                            Pågående
+                                        <% } else if (employment.employmentPeriod.end) { %>
+                                            <%= employment.employmentPeriod.end %>
+                                        <% } %>
+                                        <br>
+                                    <% } %>
+                                    <hr>
+                                <% }) %>
+                            <% } %>
+                            
+                            <% if (data.profiles[i].qualifications) { %>
+                                <strong>Kvalificationer</strong><br>
+                                <ul>
+                                    <% data.profiles[i].qualifications.forEach((qualification) => { %>
+                                        <% if (qualification.competencyName) { %>
+                                            <li><%= qualification.competencyName %></li>
+                                        <% } %>
+                                    <% }) %>
+                                </ul>
+                            <% } %>
                         </div>
                     </div>
                 </div>

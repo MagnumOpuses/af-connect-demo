@@ -27,7 +27,7 @@ app.use('/favicon.ico', express.static(__dirname+'/public/favicon.ico'));
 
 app.get('/', (req, res) => { res.render('pages/index'); });
 app.get('/import', (req, res) => { res.render('pages/import'); });
-app.get('/application', (req, res) => { res.render('pages/application'); });
+app.get('/inspect', (req, res) => { res.render('pages/inspect'); });
 app.get('/complete', (req, res) => { res.render('pages/complete'); });
 
 app.post('/form', (req, res) => {
