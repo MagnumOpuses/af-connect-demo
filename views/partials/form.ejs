@@ -6,23 +6,39 @@
         <div class="card">
             <div class="card-body">
                     <strong>Person</strong><br>
-                    <%= data.person.name.formattedName %><br>
-                    <%= data.person.legalId.valueId %><br>
+                    <% if (data.person.name) { %>
+                        <% if (data.person.name.formattedName) { %>
+                            <%= data.person.name.formattedName %><br>
+                        <% } %>
+                    <% } %>
+                    <% if (data.person.legalId) { %>
+                        <% if (data.person.legalId.valueId) { %>
+                            <%= data.person.legalId.valueId %><br>
+                        <% } %>
+                    <% } %>
 
-                    <strong>Adress</strong><br>
-                    <% data.person.communication.address.forEach((address) => { %>
-                        <%= address.line1 %>, <%= address.postalCode %>, <%= address.city %><br>
-                    <% }) %>
-                    
-                    <strong>Email</strong><br>
-                    <% data.person.communication.email.forEach((email) => { %>
-                        <%= email.address %><br>
-                    <% }) %>
-                    
-                    <strong>Telefon</strong><br>
-                    <% data.person.communication.phone.forEach((phone) => { %>
-                        <%= phone.useCode %>: <%= phone.formattedNumber %><br>
-                    <% }) %>
+                    <% if (data.person.communication) { %>
+                        <% if (data.person.communication.address) { %>
+                            <strong>Adress</strong><br>
+                            <% data.person.communication.address.forEach((address) => { %>
+                                <%= address.line1 %>, <%= address.postalCode %>, <%= address.city %><br>
+                            <% }) %>
+                        <% } %>
+                            
+                        <% if (data.person.communication.email) { %>
+                            <strong>Email</strong><br>
+                            <% data.person.communication.email.forEach((email) => { %>
+                                <%= email.address %><br>
+                            <% }) %>
+                        <% } %>
+                            
+                        <% if (data.person.communication.phone) { %>
+                            <strong>Telefon</strong><br>
+                            <% data.person.communication.phone.forEach((phone) => { %>
+                                <%= phone.useCode %>: <%= phone.formattedNumber %><br>
+                            <% }) %>
+                        <% } %>
+                    <% } %>
             </div>
         </div>
     </div>
