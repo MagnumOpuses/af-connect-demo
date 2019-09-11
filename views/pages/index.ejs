@@ -27,14 +27,24 @@
                     <h5>Logga in och skapa cv</h5>
                 </div>
             </div>
-            <div class="row">
-                    <div class="col-md-12 p-2">
-                        <input type="text" class="form-control" placeholder="Username" disabled>
+            <form>
+                <div class="row">
+                    <div class="col-sm-4 col-md-12 col-lg-6 p-2">
+                        <label class="label">Name</label>
+                        <input type="text" name="name" class="form-control" placeholder="Name" disabled>
                     </div>
-                    <div class="col-md-12 p-2">
-                        <input type="password" class="form-control" placeholder="Password" disabled>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4 col-md-12 col-lg-6 p-2">
+                        <input type="email" name="email" class="form-control" placeholder="Email" disabled>
                     </div>
-            </div>
+
+                    <div class="col-sm-4 col-md-12 col-lg-6 p-2">
+                        <input name="phone" class="form-control" placeholder="Phone" disabled>
+                    </div>
+                </div>
+            </form>
             <div class="row">
                 <div class="col-md-12 p-2">
                     <button type="button" class="btn btn-block btn-primary" disabled>Logga in och gå vidare</button>
