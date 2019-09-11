@@ -69,10 +69,14 @@ npm test
 
 ## Deployment
 
-### Deploy the site in production mode
+### Deploy the site with Docker in production mode
+
+Supervisord starts both two processes: Nodejs(port 3000) and Nginx (port 8080).  
+Nginx is the reverse proxy that protects the Nodejs application.
 
 ```
-npm start
+$ docker build --build-arg ARG_BUILDNAME=stage --no-cache -t demo-site .
+$ docker run -p 8080:8080 demo-site
 ```
 
 ### Deploy the site in development mode
