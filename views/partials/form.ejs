@@ -2,30 +2,6 @@
     <div class="card-header">
         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#personalData">Personuppgifter</button>
     </div>
-    <!-- <div id="personalData" class="collapse p-2">
-        <div class="card">
-            <div class="card-body">
-                    <strong>Person</strong><br>
-                    <%= data.person.name.formattedName %><br>
-                    <%= data.person.legalId.valueId %><br>
-
-                    <strong>Adress</strong><br>
-                    <% data.person.communication.address.forEach((address) => { %>
-                        <%= address.line1 %>, <%= address.postalCode %>, <%= address.city %><br>
-                    <% }) %>
-                    
-                    <strong>Email</strong><br>
-                    <% data.person.communication.email.forEach((email) => { %>
-                        <%= email.address %><br>
-                    <% }) %>
-                    
-                    <strong>Telefon</strong><br>
-                    <% data.person.communication.phone.forEach((phone) => { %>
-                        <%= phone.useCode %>: <%= phone.formattedNumber %><br>
-                    <% }) %>
-            </div>
-        </div>
-    </div> -->
 
     <div id="personalData" class="p-2">
         <div class="card">

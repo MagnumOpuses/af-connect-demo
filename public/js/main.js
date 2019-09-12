@@ -24,18 +24,17 @@ function createAccordionCard(id, label, body) {
 }
 
 function onAuth() {
-    $('#feedback').html('För att hämta ditt CV från Arbetsförmedlingen måste du logga in.');
-    $('#feedback').show();
+    $('#feedback').html('För att hämta ditt CV från Arbetsförmedlingen måste du logga in.').show();
 }
 
 function onFetch() {
-    $('#feedback').html('Hämtar CV från Arbetsförmedlingen...');
-    $('#feedback').show();
+    $('#feedback').html('Hämtar CV från Arbetsförmedlingen...').show();
 }
 
 function onResponse(data) {
 
     let cv = data;
+    console.log(cv);
 
     fetch('/form', {
         method: 'POST',
@@ -45,26 +44,17 @@ function onResponse(data) {
         body: JSON.stringify(cv)
     }).then(response => {
         if (response.status !== 200) {
-            console.log('Looks like there was a problem. Status Code: ' +
-            response.status);
+            console.log('Looks like there was a problem. Status Code: ' + response.status);
             return;
         }
 
         return response.text();
-    })
-    .then(form => {
-        $('#cvAccordion').append(form);
-    })
-    .catch(err => console.log('Fetch Error :-S', err));
+    }).then(form => {
+        $('#cv-data-holder')
+            .empty()
+            .append(form);
+    }).catch(err => console.log('Fetch Error :-S', err));
 
-    let person = cv['person'];
-    let communication = cv['communication'];
-
-    let accordion = $('#cvAccordion').css('text-align', 'left');
 
     console.log(cv);
-
-    $('#feedback').hide();
-    $('#resultPane').show();
-    $('#consentControl').show();
 }

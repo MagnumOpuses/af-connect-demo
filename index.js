@@ -5,6 +5,12 @@ const app = express();
 const bodyParser = require("body-parser");
 const jwtService = require('./lib/jwt-service');
 const portabilityApi = require('./lib/portability-api');
+const fs = require('fs');
+const https = require('https');
+const privateKey  = fs.readFileSync(config.pkey, 'utf8');
+const certificate = fs.readFileSync(config.sslcert, 'utf8');
+const credentials = {key: privateKey, cert: certificate};
+
 
 function getRequestCookie(req, name) {
     var value = '; ' + req.headers.cookie;
@@ -31,7 +37,7 @@ app.get('/inspect', (req, res) => { res.render('pages/inspect'); });
 app.get('/complete', (req, res) => { res.render('pages/complete'); });
 
 app.post('/form', (req, res) => {
-    res.render('partials/form', { data: req.body });
+    res.render('partials/cv-form', { data: req.body });
 });
 
 app.get('/cv', (req, res) => {
@@ -50,5 +56,6 @@ app.get('/cv', (req, res) => {
         res.sendStatus(500);
     });
 });
-
-app.listen(config.port, () => console.log(`Gravity Demo Site listening on port ${config.port}!`))
+const httpsServer = https.createServer(credentials, app);
+httpsServer.listen(config.port, 'demotest.arbetsformedlingen.se', () => console.log(`Gravity Demo Site listening on port ${config.port}!`) );
+//app.listen(config.port,'demotest.arbetsformedlingen.se', () => console.log(`Gravity Demo Site listening on port ${config.port}!`));

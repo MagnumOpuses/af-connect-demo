@@ -21,48 +21,116 @@
                 <h3>Ansök för: JobTech Systemutvecklare</h3>
             </div>
         </div>
-        <div class="jumbotron">
-            <div class="row">
-                <div class="col-md-12 p-2">
-                    <h5>Logga in och skapa cv</h5>
-                </div>
-            </div>
-            <form>
-                <div class="row">
-                    <div class="col-sm-4 col-md-12 col-lg-6 p-2">
-                        <label class="label">Name</label>
-                        <input type="text" name="name" class="form-control" placeholder="Name" disabled>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-sm-4 col-md-12 col-lg-6 p-2">
-                        <input type="email" name="email" class="form-control" placeholder="Email" disabled>
-                    </div>
-
-                    <div class="col-sm-4 col-md-12 col-lg-6 p-2">
-                        <input name="phone" class="form-control" placeholder="Phone" disabled>
-                    </div>
-                </div>
-            </form>
-            <div class="row">
-                <div class="col-md-12 p-2">
-                    <button type="button" class="btn btn-block btn-primary" disabled>Logga in och gå vidare</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    Eller
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 p-2">
-                    <button type="button" class="btn btn-block btn-primary" onclick="location.href = '/import'">Jag har redan ett CV</button>
-                </div>
+        <!--
+        <div class="row">
+            <div class="col-12 p-2">
+                <div id="feedback" style="display: none; font-size: 24px;"></div>
             </div>
         </div>
+        -->
+
+        <div >
+            <div class="jumbotron">
+                <div class="row">
+                    <div class="col-md-12 p-2">
+                        <h5>Skapa cv</h5>
+                    </div>
+                </div>
+                <form id="cv-data-holder">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 p-2">
+                            <label class="label">Name</label>
+                            <input type="text" name="name" class="form-control" disabled>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 p-2">
+                            <label class="label">Email</label>
+                            <input type="email" name="email" class="form-control" disabled>  <br>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 p-2">
+                            <label class="label">Phone</label>
+                            <input name="phone" class="form-control" value="" disabled>  <br>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 p-2">
+                            <label class="label">Address</label>
+                            <input type="text" name="address" class="form-control" placeholder="Address" disabled>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 p-2">
+                            <label class="label">Education</label>
+                            <input type="text" name="education" class="form-control" placeholder="Education" disabled>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 p-2">
+                            <label class="label">Qualification</label>
+                            <input type="text" name="qualification" class="form-control" placeholder="Qualification" disabled>
+                        </div>
+                    </div>
+                </form>
+
+                <!--
+                <div class="row">
+                    <div class="col-md-12 p-2">
+                        <button type="button" class="btn btn-block btn-primary" disabled>Logga in och gå vidare</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        Eller
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12 p-2">
+                        <button type="button" class="btn btn-block btn-primary" onclick="location.href = '/import'">Jag har redan ett CV</button>
+                    </div>
+                </div>
+                -->
+
+                <div class="row">
+                    <div class="col-md-12 p-2">
+                        <div class="gravity-beacon"
+                             data-cookie="AMV_SSO_COOKIE"
+                             data-poll_rate="1000"
+                             data-timeout="300000"
+                             data-auth_url="https://secure.arbetsformedlingen.se/AuthenticationDispatcher/Dispatch?CT_ORIG_URL=https://demotest.arbetsformedlingen.se"
+                             data-portability_url="/cv"
+                             data-on_auth="onAuth"
+                             data-on_fetch="onFetch"
+                             data-on_response="onResponse"
+                             data-receive_only>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- The CV data populate implementation-->
+
+
+
     </div>
+    <script src="js/main.js"></script>
     <script src="vendor/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="vendor/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    <script src="vendor/gravity-beacon-0.1.0-dist/gravity-beacon.bundle.js"></script>
 </body>
 </html>
