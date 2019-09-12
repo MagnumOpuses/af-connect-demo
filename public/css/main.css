@@ -1,5 +1,5 @@
 body {
-    text-align: center;
+    text-align: left;
 }
 
 #profileSelect .btn[aria-expanded=true] {
@@ -13,4 +13,8 @@ body {
 
 form>label {
     text-align: left
+}
+
+.save-button {
+	margin-left: 8.5px;
 }

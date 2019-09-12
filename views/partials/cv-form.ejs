@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12 p-2">
                 <label class="label" for="name">Name</label>
-                <input type="text" name="name" class="form-control" placeholder="Name" value="<%= data ? data.person.name.formattedName : "" %>" disabled>
+                <input type="text" name="name" class="form-control" placeholder="Name" value="<%= data ? data.person.name.formattedName : "" %>" >
             </div>
         </div>
 
@@ -12,7 +12,7 @@
             <div class="col-sm-12 col-md-12 col-lg-12 p-2">
                 <label class="label" for="'email">Email</label>
                 <% data.person.communication.email.forEach((email) => { %>
-                    <input type="email" name="email" class="form-control" value="<%= email.address %>" disabled>  <br>
+                    <input type="email" name="email" class="form-control" value="<%= email.address %>" >  <br>
                 <% }) %>
             </div>
         </div>
@@ -21,7 +21,7 @@
             <div class="col-sm-12 col-md-12 col-lg-12 p-2">
                 <label class="label" for="phone">Phone</label>
                 <% data.person.communication.phone.forEach((phone) => { %>
-                    <input name="phone" class="form-control" value="<%= phone.formattedNumber %>" disabled>  <br>
+                    <input name="phone" class="form-control" value="<%= phone.formattedNumber %>" >  <br>
                 <% }) %>
 
             </div>
@@ -31,7 +31,7 @@
             <div class="col-sm-12 col-md-12 col-lg-12 p-2">
                 <label class="label" for="phone">Address</label>
                 <% data.person.communication.address.forEach((address) => { %>
-                    <input name="phone" class="form-control" value="<%= address.line1 + address.line2 + address.city + ' - ' + address.postalCode %>" disabled>  <br>
+                    <input name="phone" class="form-control" value="<%= address.line1 + address.line2 + address.city + ' - ' + address.postalCode %>" >  <br>
                 <% }) %>
             </div>
 
@@ -40,14 +40,14 @@
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12 p-2">
                 <label class="label" for="education">Education</label>
-                <input type="text" name="education" class="form-control" placeholder="Education" disabled>
+                <input type="text" name="education" class="form-control" placeholder="Education" >
             </div>
         </div>
 
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12 p-2">
                 <label class="label" for="qualification">Qualification</label>
-                <input type="text" name="qualification" class="form-control" placeholder="Qualification" disabled>
+                <input type="text" name="qualification" class="form-control" placeholder="Qualification" >
             </div>
         </div>
     </form>
