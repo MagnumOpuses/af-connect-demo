@@ -78,10 +78,18 @@ npm test
 
 ## Deployment
 
-### Deploy the site in production mode
+### Deploy the site with Docker in production mode
 
 ```
-npm start
+$ docker build --build-arg ARG_BUILDNAME=stage --no-cache -t demo-site .
+$ docker run -p 8080:8080 demo-site
+```
+
+### Deploy the site with Docker in stage mode
+
+```
+$ docker build --build-arg ARG_BUILDNAME=stage --no-cache -t demo-site .
+$ docker run -p 8080:8080 demo-site
 ```
 
 ### Deploy the site in development mode
