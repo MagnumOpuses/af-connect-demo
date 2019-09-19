@@ -23,7 +23,7 @@ No getting started guidelines yet.
 
 ### Prerequisites
 
-No prerequisites guidelines yet.
+You need Administrative privilege to make this change
 
 ### Installation
 
@@ -43,21 +43,30 @@ _Read move about environment configuration here: [dotenv](https://github.com/mot
 
 ##### Provide custom properties via configuration file
 
-Create an `.env` file at the root of the `gravity-demo-site` directory with the following content.
+1. Create an `.env` file at the root of the `gravity-demo-site` directory with the following content.
+   
+   This `.env` file is ignored by the rules set in `.gitignore`, therefore in this file you may freely customizable the deployment to your own needs.
 
-_This `.env` file is ignored by the rules set in `.gitignore`, therefore in this file you may freely customizable the deployment to your own needs._
+    ```
+    PORT=443
+    PKEY="./cert_and_key/hacksparrow-key.pem"
+    SSLCERT="./cert_and_key/hacksparrow-cert.pem"
+    ```
 
-```
-PORT=5000
-```
 
-##### Provide custom properties via CLI
+2.  Create an folder name `cert_and_key` at the root of the `gravity-demo-site` directory containing the cerificate and private keys for Https connection.
 
-If needed be you may override both default and configuration file properties via CLI like this.
+    Download all the files from this link [Centificate drive link](https://drive.google.com/drive/u/0/folders/1Lju1-2KWkLOGql4bklvEYz0Q0iLTXtAm) and put them in the `cert_and_key` folder.
 
-```
-PORT=5080 npm run dev
-```
+    This `cert_and_key` folder and the content is ignored by the rules set in `.gitignore`, therefore in this file you may freely customizable the deployment to your own needs.
+
+3.  Go to the host file of your machine
+    ```
+    For windows: (C:\Windows\System32\drivers\etc\hosts)
+    For mac: (/private/etc/hosts)
+    Replace the 'localhost' with 'demotest.arbetsformedlingen.se'
+    ```
+
 
 ## Test
 

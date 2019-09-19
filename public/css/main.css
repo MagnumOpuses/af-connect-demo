@@ -1,5 +1,5 @@
 body {
-    text-align: center;
+    text-align: left;
 }
 
 #profileSelect .btn[aria-expanded=true] {
@@ -9,4 +9,12 @@ body {
 
 .jumbotron {
     padding: 1rem 1rem;
+}
+
+form>label {
+    text-align: left
+}
+
+.save-button {
+	margin-left: 8.5px;
 }
