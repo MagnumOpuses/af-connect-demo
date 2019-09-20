@@ -15,6 +15,7 @@
   },
   "scripts": {
     "start": "node index.js",
+    "local": "node index.js localhost",
     "dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

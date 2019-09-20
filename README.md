@@ -48,9 +48,12 @@ _Read move about environment configuration here: [dotenv](https://github.com/mot
    This `.env` file is ignored by the rules set in `.gitignore`, therefore in this file you may freely customizable the deployment to your own needs.
 
     ```
-    PORT=443
+    ##Only Localhost config
+    LOCAL_PORT=443
     PKEY="./cert_and_key/hacksparrow-key.pem"
     SSLCERT="./cert_and_key/hacksparrow-cert.pem"
+    #config for OpenShift deploy
+    PORT=3000
     ```
 
 
@@ -99,6 +102,24 @@ In development mode the [Nodemon](https://nodemon.io/) will automatically detect
 ```
 npm run dev
 ```
+
+### Run the site on localhost
+To run it on your local computer you have to add a (self signed) certificate and a private key and put those entries in to the .env file.
+
+ex.
+```
+#Only Localhost config
+LOCAL_PORT=443
+PKEY = './cert_and_key/hacksparrow-key.pem'
+SSLCERT = './cert_and_key/hacksparrow-cert.pem'
+#Config
+PORT=3000
+```
+Run with:
+```
+npm run local
+```
+
 
 ## Built with
 
