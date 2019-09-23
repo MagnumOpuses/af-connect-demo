@@ -7,7 +7,7 @@
     <link rel=”stylesheet” href=”https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link href="vendor/bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/main.css" rel="stylesheet"/>
-    <title>Gravity Demo Site</title>
+    <title>AF Connect Demo</title>
     <style>
         body {
             background-color: #c3d5da;
@@ -22,14 +22,6 @@
             </div>
         </div>
 
-        <!--
-        <div class="row">
-            <div class="col-12 p-2">
-                <div id="feedback" style="display: none; font-size: 24px;"></div>
-            </div>
-        </div>
-        -->
-
         <div >
             <div class="jumbotron">
                 <div class="row">
@@ -39,17 +31,13 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 p-2">
-                        <div class="gravity-beacon"
+                        <div class="af-connect-module"
                              data-label="Skapa CV med Gravity (AF)"
-                             data-cookie="AMV_SSO_COOKIE"
                              data-poll_rate="1000"
                              data-timeout="300000"
-                             data-auth_url="https://secure.arbetsformedlingen.se/AuthenticationDispatcher/Dispatch?CT_ORIG_URL=https://demotest.arbetsformedlingen.se"
-                             data-portability_url="/cv"
-                             data-on_auth="onAuth"
-                             data-on_fetch="onFetch"
-                             data-on_response="onResponse"
-                             data-receive_only>
+                             data-af-connect-url="https://demotest.arbetsformedlingen.se"
+                             data-af-portability-url="https://portability.arbetsformedlingen.se"
+                             data-on_response="onResponse">
                         </div>
                     </div>
                 </div>
@@ -98,47 +86,21 @@
                     </div>
                 </form>
 
-                <!--
-                <div class="row">
-                    <div class="col-md-12 p-2">
-                        <button type="button" class="btn btn-block btn-primary">Logga in och gå vidare</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        Eller
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-md-12 p-2">
-                        <button type="button" class="btn btn-block btn-primary" onclick="location.href = '/import'">Jag har redan ett CV</button>
-                    </div>
-                </div>
-                -->
                 <div class="row">
                     <button type="button" class="btn btn-primary save-button" onclick="saveCV()">Save</button>
                 </div>
-
-
             </div>
         </div>
-
-        <!-- The CV data populate implementation-->
-
-
-
     </div>
     <script src="js/main.js"></script>
     <script src="vendor/jquery-3.4.1/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="vendor/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
-    <script src="vendor/gravity-beacon-0.1.0-dist/gravity-beacon.bundle.js"></script>
+    <script src="vendor/af-connect-module-0.1.0-dist/af-connect-module.bundle.js"></script>
     <script type="text/javascript">
         function saveCV() {
-            alert("Your CV has been saved. Thank you for your application.")
-            }
+            alert("Your CV has been saved. Thank you for your application.");
+        }
     </script>
 </body>
 </html>

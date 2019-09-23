@@ -3,9 +3,9 @@
 [logo]: https://github.com/MagnumOpuses/project-meta/blob/master/img/jobtechdev_black.png "JobTech dev logo"
 [A JobTech Project](https://www.jobtechdev.se)
 
-# Gravity Demo Site
+# AF Connect Demo
 
-Gravity Demo site is an example website that demonstrates the use-case of pre-filling forms with CV data from [Gravity Portability](https://github.com/MagnumOpuses/gravity-portability).
+AF Connect Demo is an example website that demonstrates the use-case of pre-filling forms with CV data from [AF Connect](https://github.com/MagnumOpuses/af-connect).
 
 This website's runtime environment is [Node.js](https://nodejs.org/) and is built using the web application framework is [Express](https://expressjs.com/).
 
@@ -30,8 +30,8 @@ You need Administrative privilege to make this change
 Acquire the source code from this repository and install all dependencies using [NPM](https://www.npmjs.com/).
 
 ```bash
-git clone https://github.com/MagnumOpuses/gravity-demo-site.git
-cd gravity-demo-site
+git clone https://github.com/MagnumOpuses/af-connect-demo.git
+cd af-connect-demo
 npm install
 ```
 
@@ -43,33 +43,14 @@ _Read move about environment configuration here: [dotenv](https://github.com/mot
 
 ##### Provide custom properties via configuration file
 
-1. Create an `.env` file at the root of the `gravity-demo-site` directory with the following content.
+1. Create an `.env` file at the root of the `af-connect-demo` directory with the following content.
    
    This `.env` file is ignored by the rules set in `.gitignore`, therefore in this file you may freely customizable the deployment to your own needs.
 
     ```
-    ##Only Localhost config
-    LOCAL_PORT=443
-    PKEY="./cert_and_key/hacksparrow-key.pem"
-    SSLCERT="./cert_and_key/hacksparrow-cert.pem"
-    #config for OpenShift deploy
+    HOST='localhost'
     PORT=3000
     ```
-
-
-2.  Create an folder name `cert_and_key` at the root of the `gravity-demo-site` directory containing the cerificate and private keys for Https connection.
-
-    Download all the files from this link [Centificate drive link](https://drive.google.com/drive/u/0/folders/1Lju1-2KWkLOGql4bklvEYz0Q0iLTXtAm) and put them in the `cert_and_key` folder.
-
-    This `cert_and_key` folder and the content is ignored by the rules set in `.gitignore`, therefore in this file you may freely customizable the deployment to your own needs.
-
-3.  Go to the host file of your machine
-    ```
-    For windows: (C:\Windows\System32\drivers\etc\hosts)
-    For mac: (/private/etc/hosts)
-    Replace the 'localhost' with 'demotest.arbetsformedlingen.se'
-    ```
-
 
 ## Test
 
@@ -84,15 +65,15 @@ npm test
 ### Deploy the site with Docker in production mode
 
 ```
-$ docker build --build-arg ARG_BUILDNAME=stage --no-cache -t demo-site .
-$ docker run -p 8080:8080 demo-site
+$ docker build --no-cache -t af-connect-demo .
+$ docker run -p 3000:3000 af-connect-demo
 ```
 
 ### Deploy the site with Docker in stage mode
 
 ```
-$ docker build --build-arg ARG_BUILDNAME=stage --no-cache -t demo-site .
-$ docker run -p 8080:8080 demo-site
+$ docker build --build-arg ARG_BUILDNAME=stage --no-cache -t af-connect-demo .
+$ docker run -p 3000:3000 af-connect-demo
 ```
 
 ### Deploy the site in development mode
@@ -103,24 +84,6 @@ In development mode the [Nodemon](https://nodemon.io/) will automatically detect
 npm run dev
 ```
 
-### Run the site on localhost
-To run it on your local computer you have to add a (self signed) certificate and a private key and put those entries in to the .env file.
-
-ex.
-```
-#Only Localhost config
-LOCAL_PORT=443
-PKEY = './cert_and_key/hacksparrow-key.pem'
-SSLCERT = './cert_and_key/hacksparrow-cert.pem'
-#Config
-PORT=3000
-```
-Run with:
-```
-npm run local
-```
-
-
 ## Built with
 
   - [Node.js v10.15.3](https://nodejs.org/) (Runtime environment)
@@ -128,7 +91,7 @@ npm run local
   - [Express v4.17.1](https://expressjs.com/) (Web application framework)
   - [Nodemon v1.19.2](https://nodemon.io/) (Change monitor)
   - [EJS v2.7.1](https://ejs.co/) (Template engine)
-  - [Bootstrap v3.3.7](http://getbootstrap.com) (CSS framework)
+  - [Bootstrap v4.3.1](http://getbootstrap.com) (CSS framework)
   - [JQuery v3.4.1](https://jquery.com/) (JavaScript util library)
 
 ## Contributing
