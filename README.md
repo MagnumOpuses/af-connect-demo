@@ -84,6 +84,24 @@ In development mode the [Nodemon](https://nodemon.io/) will automatically detect
 npm run dev
 ```
 
+### Run the site on localhost
+To run it on your local computer you have to add a (self signed) certificate and a private key and put those entries in to the .env file.
+
+ex.
+```
+#Only Localhost config
+LOCAL_PORT=443
+PKEY = './cert_and_key/hacksparrow-key.pem'
+SSLCERT = './cert_and_key/hacksparrow-cert.pem'
+#Config
+PORT=3000
+```
+Run with:
+```
+npm run local
+```
+
+
 ## Built with
 
   - [Node.js v10.15.3](https://nodejs.org/) (Runtime environment)
