@@ -68,5 +68,5 @@ app.get('/cv', (req, res) => {
 if(whatHost==='localhost' ){
     server.listen(config.sslPort, 'demotest.arbetsformedlingen.se', () => console.log(`Gravity Demo Site listening on port ${config.sslPort}!`) );
 }else{
-    server.listen(config.port, 'demotest.arbetsformedlingen.se', () => console.log(`Gravity Demo Site listening on port ${config.port}!`) );
+    server.listen(config.port, () => console.log(`Gravity Demo Site listening on port ${config.port}!`) );
 }
