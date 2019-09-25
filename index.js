@@ -8,7 +8,7 @@ const portabilityApi = require('./lib/portability-api');
 const fs = require('fs');
 const https = require('https');
 const http = require('http');
-const whatHost = process.argv[2] || 'deploy';
+const whatHost = config.environment;
 let server;
 
 if(whatHost==='localhost' ){
@@ -66,7 +66,7 @@ app.get('/cv', (req, res) => {
 });
 
 if(whatHost==='localhost' ){
-    server.listen(config.localPort, 'demotest.arbetsformedlingen.se', () => console.log(`Gravity Demo Site listening on port ${config.localPort}!`) );
+    server.listen(config.sslPort, 'demotest.arbetsformedlingen.se', () => console.log(`Gravity Demo Site listening on port ${config.sslPort}!`) );
 }else{
     server.listen(config.port, 'demotest.arbetsformedlingen.se', () => console.log(`Gravity Demo Site listening on port ${config.port}!`) );
 }
