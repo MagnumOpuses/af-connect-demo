@@ -1,42 +1,9 @@
 "use strict"
 
-function createAccordionCard(id, label, body) {
-    let card = $('<div class="card"></div>');
-    let cardId = 'card_' + id;
-    let cardHeaderId = cardId + '_header';
-    let cardContentId = cardId + '_content';
-    
-    let cardHeader = $('<div class="card-header"></div>')
-        .attr('id', cardHeaderId);
-    card.append(cardHeader);
-
-    let cardButton = $('<button class="btn btn-link" type="button" data-toggle="collapse"></button>')
-        .attr('data-target', '#' + cardContentId)
-        .html(label);
-    cardHeader.append(cardButton);
-
-    let cardContent = $('<div class="collapse" data-parent="#cvAccordion"></div>')
-        .attr('id', cardContentId)
-        .append(body);
-    card.append(cardContent);
-
-    return card;
-}
-
-function onAuth() {
-    $('#feedback').html('För att hämta ditt CV från Arbetsförmedlingen måste du logga in.').show();
-}
-
-function onFetch() {
-    $('#feedback').html('Hämtar CV från Arbetsförmedlingen...').show();
-}
-
-function onResponse(data) {
-
-    let cv = data;
+function onResponse(cv) {
     console.log(cv);
 
-    fetch('/form', {
+    fetch('/cvForm', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -44,7 +11,7 @@ function onResponse(data) {
         body: JSON.stringify(cv)
     }).then(response => {
         if (response.status !== 200) {
-            console.log('Looks like there was a problem. Status Code: ' + response.status);
+            console.log('Looks like there was a problem. Status code: ' + response.status);
             return;
         }
 
@@ -53,8 +20,5 @@ function onResponse(data) {
         $('#cv-data-holder')
             .empty()
             .append(form);
-    }).catch(err => console.log('Fetch Error :-S', err));
-
-
-    console.log(cv);
+    }).catch(err => console.log('Fetch error:', err));
 }

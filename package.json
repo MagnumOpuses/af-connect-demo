@@ -1,7 +1,7 @@
 {
-  "name": "gravity-demo-site",
+  "name": "af-connect-demo",
   "version": "0.1.0",
-  "description": "Gravity Demo Site",
+  "description": "AF Connect Demo",
   "main": "index.js",
   "dependencies": {
     "dotenv": "^8.1.0",
