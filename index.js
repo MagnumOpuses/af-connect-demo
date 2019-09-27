@@ -20,9 +20,28 @@ app.use('/fonts', express.static(__dirname+'/public/fonts'));
 app.use('/vendor', express.static(__dirname+'/public/vendor'));
 app.use('/favicon.ico', express.static(__dirname+'/public/favicon.ico'));
 
-app.get('/', (req, res) => { res.render('pages/index'); });
+// Helper function to check existance and get nested properties
+let get = function() {
+    var args = Array.prototype.slice.call(arguments, 0);
+    var path = args[0].split('.');
+    var root = this;
+    for (var i = 0; i < path.length; i++) {
+        if(root[path[i]] === void 0) {
+            return args[1]?args[1]:null;
+        } else {
+            root = root[path[i]];
+        }
+    };
+    return root;
+}
+
+app.get('/', (req, res) => { 
+    res.locals.get = get;
+    res.render('pages/index');
+});
 
 app.post('/cvForm', (req, res) => {
+    res.locals.get = get;
     res.render('partials/cv-form', { data: req.body });
 });
 
