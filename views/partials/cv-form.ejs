@@ -1,49 +1,181 @@
-<form>
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12 p-2">
-            <label class="label" for="name">Name</label>
-            <input type="text" name="name" class="form-control" placeholder="Name" value="<%= data ? data.person.name.formattedName : "" %>" >
-        </div>
-    </div>
+<div class="row">
+    <div class="col-md-12 pt-2 mt-2">
+        <form id="cv-data-holder">
+            <div class="card">
+                <div class="card-header">
+                    Person
+                </div>
+                <div class="card-body">
+                    <label class="label" for="given">
+                        <h6 class="card-subtitle mb-2 text-muted">Förnamn</h6>
+                    </label>
+                    <input type="text" name="given" class="form-control" value="<%= get('data.person.name.given', ''); %>" >  <br>
 
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12 p-2">
-            <label class="label" for="'email">Email</label>
-            <% data.person.communication.email.forEach((email) => { %>
-                <input type="email" name="email" class="form-control" value="<%= email.address %>" >  <br>
-            <% }) %>
-        </div>
-    </div>
+                    <label class="label" for="family">
+                        <h6 class="card-subtitle mb-2 text-muted">Efternamn</h6>
+                    </label>
+                    <input type="text" name="family" class="form-control" value="<%= get('data.person.name.family', ''); %>" >  <br>
 
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12 p-2">
-            <label class="label" for="phone">Phone</label>
-            <% data.person.communication.phone.forEach((phone) => { %>
-                <input name="phone" class="form-control" value="<%= phone.formattedNumber %>" >  <br>
-            <% }) %>
-        </div>
-    </div>
+                    <label class="label" for="legalId">
+                        <h6 class="card-subtitle mb-2 text-muted">Personnummer</h6>
+                    </label>
+                    <input type="text" name="legalId" class="form-control" value="<%= get('data.person.legalId.valueId', ''); %>" >  <br>
 
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12 p-2">
-            <label class="label" for="phone">Address</label>
-            <% data.person.communication.address.forEach((address) => { %>
-                <input name="phone" class="form-control" value="<%= address.line1 + address.line2 + address.city + ' - ' + address.postalCode %>" >  <br>
-            <% }) %>
-        </div>
-    </div>
+                    <div class="card bg-light">
+                        <div class="card-header">
+                            <label class="label" for="email">
+                                Email
+                            </label>
+                        </div>
+                        <div class="card-body">
+                            <% if (get('data.person.communication.email')) { %>
+                                <% data.person.communication.email.forEach((email) => { %>
+                                    <input type="email" name="email" class="form-control" value="<%= email.address %>" >  <br>
+                                <% }) %>
+                            <% } %>
+                            
+                            <div>
+                                <button type="button" class="btn btn-light btn-sm" style="border: 1px solid #333;">Lägg till email</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card bg-light">
+                        <div class="card-header">
+                            <label class="label" for="phone">
+                                    Telefonnummer
+                            </label>
+                        </div>
+                        <div class="card-body">
+                            <% if (get('data.person.communication.phone')) { %>
+                                <% data.person.communication.phone.forEach((phone) => { %>
+                                    <input name="phone" class="form-control" value="<%= phone.formattedNumber %>" >  <br>
+                                <% }) %>
+                            <% } %>
+                            <div>
+                                <button type="button" class="btn btn-light btn-sm" style="border: 1px solid #333;">Lägg till telefonnummer</button>
+                            </div>
+                        </div>
+                    </div>
 
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12 p-2">
-            <label class="label" for="education">Education</label>
-            <input type="text" name="education" class="form-control" placeholder="Education" >
-        </div>
-    </div>
+                    <div class="card bg-light">
+                        <div class="card-header">
+                            <label class="label" for="address">
+                                Adress
+                            </label>
+                        </div>
+                        <div class="card-body">
+                            <% if (get('data.person.communication.address')) { %>
+                                <% data.person.communication.address.forEach((address) => { %>
+                                    <input name="address-line1" class="form-control" value="<%= address.line1 %>" >  <br>
+                                    <input name="address-line2" class="form-control" value="<%= address.line2 %>" >  <br>
+                                    <input name="address-line3" class="form-control" value="<%= address.line3 %>" >  <br>
+                                    
+                                    <label class="label" for="address-city">
+                                        <h6 class="card-subtitle mb-2 text-muted">Stad</h6>
+                                    </label>
+                                    <input name="address-city" class="form-control" value="<%= address.city %>" >  <br>
+                                    
+                                    <label class="label" for="address-postal">
+                                        <h6 class="card-subtitle mb-2 text-muted">Postnummer</h6>
+                                    </label>
+                                    <input name="address-postal" class="form-control" value="<%= address.postalCode %>" >  <br>
+                                <% }) %>
+                            <% } %>
+                            <div>
+                                <button type="button" class="btn btn-light btn-sm" style="border: 1px solid #333;">Lägg till adress</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12 p-2">
-            <label class="label" for="qualification">Qualification</label>
-            <input type="text" name="qualification" class="form-control" placeholder="Qualification" >
-        </div>
+            <div class="card">
+                <div class="card-header">
+                    Ditt CV
+                </div>
+                <div class="card-body">
+                    <label class="label" for="description">
+                        <h6 class="card-subtitle mb-2 text-muted">Beskrivning</h6>
+                    </label>
+                    <input type="text" name="description" class="form-control" value="<%= get('data.profile.description', ''); %>" >  <br>
+
+                    <div class="card bg-light">
+                        <div class="card-header">
+                            <label class="label" for="employment">
+                                Dina anställningar
+                            </label>
+                        </div>
+                        <div class="card-body">
+                            <% if (get('data.profile.employment')) { %>
+                                <% data.profile.employment.forEach((employment) => { %>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <label class="label" for="employment-title">
+                                                <h6 class="card-subtitle mb-2 text-muted">Roll</h6>
+                                            </label>
+                                            <% if (employment.title) { %>
+                                                <input name="employment-title" class="form-control" value="<%= employment.title %>" >  <br>
+                                            <% } else { %>
+                                                <input name="employment-title" class="form-control" value="" >  <br>
+                                            <% } %>
+                                            
+                                            <label class="label" for="employment-organization">
+                                                <h6 class="card-subtitle mb-2 text-muted">Organisation</h6>
+                                            </label>
+                                            <% if (employment.organization && employment.organization.name) { %>
+                                                <input name="employment-organization" class="form-control" value="<%= employment.organization.name %>" >  <br>
+                                            <% } else { %>
+                                                <input name="employment-organization" class="form-control" value="" >  <br>
+                                            <% } %>
+                                            
+                                            <label class="label" for="employment-description">
+                                                <h6 class="card-subtitle mb-2 text-muted">Rollbeskrivning</h6>
+                                            </label>
+                                            <% if (employment.description) { %>
+                                                <input name="employment-description" class="form-control" value="<%= employment.description %>" >  <br>
+                                            <% } else { %>
+                                                <input name="employment-description" class="form-control" value="" >  <br>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                <% }) %>
+                            <% } %>
+
+                            <div>
+                                <button type="button" class="btn btn-light btn-sm" style="border: 1px solid #333;">Lägg till anställning</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card bg-light">
+                        <div class="card-header">
+                            <label class="label" for="qualifications">
+                                Dina kompetenser
+                            </label>
+                        </div>
+                        <div class="card-body">
+                            <% if (get('data.profile.qualifications')) { %>
+                                <% data.profile.qualifications.forEach((qualification) => { %>
+                                    <% if (qualification.competencyName) { %>
+                                        <input name="qualification-competency-name" class="form-control" value="<%= qualification.competencyName %>" >  <br>
+                                    <% } else { %>
+                                        <input name="qualification-competency-name" class="form-control" value="" >  <br>
+                                    <% } %>
+                                <% }) %>
+                            <% } %>
+
+                            <div>
+                                <button type="button" class="btn btn-light btn-sm" style="border: 1px solid #333;">Lägg till kompetens</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-12 pt-2 mt-2" style="margin-bottom: 16px; padding-top: 0px !important; margin-top: 0px !important">
+                    <button type="button" class="btn btn-primary save-button site-button" onclick="saveCV()">Skicka din ansökan</button>
+                </div>
+            </div>
+        </form>
     </div>
-</form>
+</div>

@@ -20,5 +20,9 @@ function onResponse(cv) {
         $('#cv-data-holder')
             .empty()
             .append(form);
+
+        $('#feedback-text').html('Vi har hämtat ditt CV från Arbetsförmedlingen');
+        $('#create-cv-button').val('Förhandsgranska');
+        $('#af-connect-button input').val('Skicka ansökan');
     }).catch(err => console.log('Fetch error:', err));
 }
