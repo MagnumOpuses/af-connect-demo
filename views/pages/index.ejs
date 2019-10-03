@@ -10,44 +10,53 @@
     <title>AF Connect Demo</title>
     <style>
         body {
-            background-color: #c3d5da;
+            background-color: #ffffff;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-12 p-2 mt-2">
-                <h3>Ansök för: JobTech Systemutvecklare</h3>
-            </div>
-        </div>
-
-        <div >
-            <div class="jumbotron">
+            <div class="col-md-12 p-2 mt-2 site-header">
                 <div class="row">
-                    <div class="col-md-12 p-2">
-                        <h5>Skapa ditt cv</h5>
+                    <div class="col-md-6 pt-2 mt-2">
+                        <p class="site-name"><img src="/img/logo.png"> XXXXXX</p>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12 p-2">
-                        <div class="af-connect-module"
-                             data-label="Skapa CV med Gravity (AF)"
-                             data-poll-rate="1000"
-                             data-timeout="300000"
-                             data-af-connect-url="https://demotest.arbetsformedlingen.se"
-                             data-af-portability-url="https://portability.arbetsformedlingen.se"
-                             data-on-response="onResponse">
+                    <div class="col-md-6 pt-2 mt-2 site-control">
+                        <div class="site-control-block">
+                            <i class="site-nav-item">Hem</i>
+                            <i class="site-nav-item">Alla jobb</i>
+                            <input type="button" class="site-button" value="Logga ut"></input>
                         </div>
                     </div>
                 </div>
-                
-                <%- include ../partials/cv-form.ejs %>
-
                 <div class="row">
-                    <button type="button" class="btn btn-primary save-button" onclick="saveCV()">Save</button>
+                    <div class="col-md-12 col-lg-6 pt-2 mt-2">
+                        <div class="site-header-labels">
+                            <p id="site-header-label-top">Ansökan för:</p>
+                            <p id="site-header-label-mid">System utvecklare</p>
+                            <p id="site-header-label-bot">JobTechDev</p>
+                            <div>
+                                <p id="feedback-text" style="font-weight: 600; height: 16px;"></p>
+                                <input id="create-cv-button" type="button" class="site-button" value="SKAPA CV" onclick="document.getElementById('cv-data-holder').scrollIntoView();"></input>
+                                <div id="button-spacer" style="display: inline; padding: 12px;">Eller</div>
+                                <div id="af-connect-button" class="af-connect-module"
+                                    data-on-response="onResponse">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-0 col-lg-6 pt-2 mt-2">
+                        <div class="d-none d-lg-block">
+                            <img src="/img/Artboard.png" style="width: 100%;">
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 16px; background-color: #ffffff;">
+            <div class="col-md-12 pt-2 mt-2 site-body">
+                <%- include ../partials/cv-form.ejs %>
             </div>
         </div>
     </div>

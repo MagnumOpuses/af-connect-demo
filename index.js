@@ -35,7 +35,7 @@ let get = function() {
     return root;
 }
 
-app.get('/', (req, res) => { 
+app.get('/', (req, res) => {
     res.locals.get = get;
     res.render('pages/index');
 });
