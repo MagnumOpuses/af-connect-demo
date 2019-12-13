@@ -1,8 +1,13 @@
 // config.js
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 dotenv.config();
 module.exports = {
-  host: process.env.HOST || 'localhost',
+  host: process.env.HOST || "af-connect.local",
   port: process.env.PORT || 3000,
-  portabilityUrl: process.env.PORTABILITY_URL || 'https://localhost:8080'
+  afPortabilityUrl:
+    process.env.AF_PORTABILITY_URL || "https://af-connect.local:8080",
+  afPortabilityApiKey:
+    process.env.AF_PORTABILITY_API_KEY ||
+    "dummydummydummydummydummydummydummydummydummydummy",
+  afConnectUrl: process.env.AF_CONNECT_URL || "https://af-connect.local"
 };
