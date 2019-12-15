@@ -37,7 +37,7 @@ let get = function() {
 
 app.get("/", (req, res) => {
   res.locals.get = get;
-  res.render("pages/index", { portabilityUrl: config.portabilityUrl });
+  res.render("pages/index");
 });
 
 app.post("/cvForm", (req, res) => {
