@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel=”stylesheet” href=”https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="vendor/bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/main.css" rel="stylesheet"/>
+    <title>AF Connect Demo</title>
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 p-2 mt-2 site-header">
+                <div class="row">
+                    <div class="col-md-6 pt-2 mt-2">
+                        <p class="site-name"><img src="/img/site-logo.png"> XXXXXX</p>
+                    </div>
+                    <div class="col-md-6 pt-2 mt-2 site-control">
+                        <div class="site-control-block">
+                            <i class="site-nav-item">Hem</i>
+                            <i class="site-nav-item">Alla jobb</i>
+                            <input type="button" class="site-button" value="Logga ut"></input>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-6 pt-2 mt-2">
+                        <div class="site-header-labels">
+                            <p id="site-header-label-top">Ansökan för:</p>
+                            <p id="site-header-label-mid">System utvecklare</p>
+                            <p id="site-header-label-bot">JobTechDev</p>
+                            <div>
+                                <p id="feedback-text" style="font-weight: 600; height: 16px;"></p>
+                                <input id="create-cv-button" type="button" class="site-button" value="Skapa CV" onclick="document.getElementById('cv-data-holder').scrollIntoView();"></input>
+                                <div id="button-spacer" style="display: inline; padding: 12px;">Eller</div>
+                                <div id="af-connect-button" class="af-connect-module"
+                                    data-af-portability-url="<%= portabilityUrl %>"
+                                    data-af-connect-url="https://connectstage.arbetsformedlingen.se/"
+                                    data-on-response="onResponse">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-0 col-lg-6 pt-2 mt-2">
+                        <div class="d-none d-lg-block">
+                            <img src="/img/Artboard.png" style="width: 100%;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 16px; background-color: #ffffff;">
+            <div class="col-md-12 pt-2 mt-2 site-body">
+                <%- include ../partials/cv-form.ejs %>
+            </div>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+    <script src="vendor/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="vendor/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    <script src="vendor/af-connect-module-0.1.0-dist/af-connect-module.bundle.js"></script>
+    <script type="text/javascript">
+        function saveCV() {
+            alert("Your CV has been saved. Thank you for your application.");
+        }
+    </script>
+</body>
+</html>
