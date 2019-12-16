@@ -1,0 +1,1 @@
+ docker run -p 3000:8080 -e HOST=localhost -t jobtechdev/af-connect-demo

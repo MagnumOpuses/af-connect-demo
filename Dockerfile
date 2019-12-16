@@ -10,10 +10,9 @@ ENV USER=$ARG_USER
 ENV PASSWD=$ARG_PASSWD
 RUN echo 'kolla:' ${USER} ${PASSWD} ' buildName:'${buildName}
 
-WORKDIR /app
-COPY package.json /app
+WORKDIR /dist
+COPY . /dist
 RUN npm install
-COPY . /app
 
 #Create Document root
 RUN mkdir /opt/nginx
@@ -64,4 +63,4 @@ RUN chmod -R 775 /var/lib/nginx && \
 #######
 USER 10000
 CMD ["/usr/bin/supervisord", "-n"]
-EXPOSE 8080
+EXPOSE 3000
