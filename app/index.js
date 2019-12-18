@@ -45,6 +45,12 @@ app.post("/cvForm", (req, res) => {
   res.render("partials/cv-form", { data: req.body });
 });
 
-server.listen(config.port, config.host, () =>
-  console.log(`AF Connect Demo listening on: ${config.host}:${config.port} !`)
-);
+if (config.host === "localhost") {
+  server.listen(config.port, () =>
+      console.log(`AF Connect Demo listening on: ${config.host}:${config.port} !`)
+  );
+} else {
+  server.listen(config.port, config.host, () =>
+      console.log(`AF Connect Demo listening on: ${config.host}:${config.port} !`)
+  );
+}
