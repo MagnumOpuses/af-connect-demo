@@ -1,0 +1,22 @@
+<html>
+  <body style="margin: 0px;">
+    <script type="text/javascript">
+      function onResponse(envelope) {
+        // Envelope contains user CV and consent details.
+        console.log(envelope);
+      }
+    </script>
+    <div
+      style="background-color: #aaa; color: #eee; font-weight: 600; padding:4px; text-align: center"
+    >
+      This page does not operate on production data. Find more information at
+      <a
+        style="color: #fff"
+        href="https://github.com/MagnumOpuses/af-connect-module"
+        >https://github.com/MagnumOpuses/af-connect-module</a
+      >
+    </div>
+    <div class="af-connect-module" data-on_response="onResponse"></div>
+    <script src="vendor/af-connect-module-0.1.0-dist/af-connect-module.bundle.js"></script>
+  </body>
+</html>
