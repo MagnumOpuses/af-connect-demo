@@ -44,6 +44,15 @@ app.get("/", (req, res) => {
   });
 });
 
+app.get("/bare", (req, res) => {
+  res.locals.get = get;
+  res.render("pages/bare", {
+    afConnectUrl: config.afConnectUrl,
+    afPortabilityUrl: config.afPortabilityUrl,
+    afPortabilityApiKey: config.afPortabilityApiKey
+  });
+});
+
 app.post("/cvForm", (req, res) => {
   res.locals.get = get;
   res.render("partials/cv-form", { data: req.body });
@@ -51,10 +60,10 @@ app.post("/cvForm", (req, res) => {
 
 if (config.host === "localhost") {
   server.listen(config.port, () =>
-      console.log(`AF Connect Demo listening on: ${config.host}:${config.port} !`)
+    console.log(`AF Connect Demo listening on: ${config.host}:${config.port} !`)
   );
 } else {
   server.listen(config.port, config.host, () =>
-      console.log(`AF Connect Demo listening on: ${config.host}:${config.port} !`)
+    console.log(`AF Connect Demo listening on: ${config.host}:${config.port} !`)
   );
 }
