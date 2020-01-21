@@ -1,6 +1,11 @@
 "use strict";
 
-function onResponse(envelope) {
+function onResponse(envelope, err) {
+  if (err !== undefined) {
+    alert("AF-Connect Module error code [" + err.code + "]: " + err.message);
+    return;
+  }
+
   console.log(envelope);
 
   // Get the data(CV) from the envelope
