@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed EJS rendering of profile employment and qualification lists.
+
 ### Changed
 
 - Person "legalId" is now converted from format YYYY-MM-DD-XXXX to Swedish personnummer format(YYMMDD-XXXX).
