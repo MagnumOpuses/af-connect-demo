@@ -9,7 +9,25 @@ function onResponse(envelope, err) {
   console.log(envelope);
 
   // Get the data(CV) from the envelope
-  let cv = envelope.data.data;
+  let cv = JSON.parse(envelope.value).data.data;
+
+  // Adjust the legalId format from YYYY-MM-DD-xxxx to YYMMDD-xxxx
+  // If the legalId does not match the expected format, no conversion
+  // will take place and the original value will remain unchanged.
+  try {
+    const legalIdRegex = /^\d{4}-\d{2}-\d{2}-\d{4}$/;
+    const match = cv.person.legalId.valueId.match(legalIdRegex);
+    const firstPart = match[0]
+      .split("-", 3)
+      .join("")
+      .substring(2);
+    const secondPart = match[0].split("-").pop();
+    cv.person.legalId.valueId = `${firstPart}-${secondPart}`;
+  } catch (err) {
+    console.warn(
+      "Could not convert legalId format from YYYY-MM-DD-xxxx to YYMMDD-xxxx"
+    );
+  }
 
   fetch("/cvForm", {
     method: "POST",

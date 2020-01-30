@@ -107,39 +107,41 @@
                             </label>
                         </div>
                         <div class="card-body">
-                            <% if (get('data.profile.employment')) { %>
-                                <% data.profile.employment.forEach((employment) => { %>
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <label class="label" for="employment-title">
-                                                <h6 class="card-subtitle mb-2 text-muted">Roll</h6>
-                                            </label>
-                                            <% if (employment.title) { %>
-                                                <input name="employment-title" class="form-control" value="<%= employment.title %>" >  <br>
-                                            <% } else { %>
-                                                <input name="employment-title" class="form-control" value="" >  <br>
-                                            <% } %>
-                                            
-                                            <label class="label" for="employment-organization">
-                                                <h6 class="card-subtitle mb-2 text-muted">Organisation</h6>
-                                            </label>
-                                            <% if (employment.organization && employment.organization.name) { %>
-                                                <input name="employment-organization" class="form-control" value="<%= employment.organization.name %>" >  <br>
-                                            <% } else { %>
-                                                <input name="employment-organization" class="form-control" value="" >  <br>
-                                            <% } %>
-                                            
-                                            <label class="label" for="employment-description">
-                                                <h6 class="card-subtitle mb-2 text-muted">Rollbeskrivning</h6>
-                                            </label>
-                                            <% if (employment.description) { %>
-                                                <input name="employment-description" class="form-control" value="<%= employment.description %>" >  <br>
-                                            <% } else { %>
-                                                <input name="employment-description" class="form-control" value="" >  <br>
-                                            <% } %>
+                            <% if (get('data.profiles') && get('data.profiles').length > 0) { %>
+                                <% if (get('data.profiles')[0].employment) { %>
+                                    <% get('data.profiles')[0].employment.forEach((employment) => { %>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <label class="label" for="employment-title">
+                                                    <h6 class="card-subtitle mb-2 text-muted">Roll</h6>
+                                                </label>
+                                                <% if (employment.title) { %>
+                                                    <input name="employment-title" class="form-control" value="<%= employment.title %>" >  <br>
+                                                <% } else { %>
+                                                    <input name="employment-title" class="form-control" value="" >  <br>
+                                                <% } %>
+                                                
+                                                <label class="label" for="employment-organization">
+                                                    <h6 class="card-subtitle mb-2 text-muted">Organisation</h6>
+                                                </label>
+                                                <% if (employment.organization && employment.organization.name) { %>
+                                                    <input name="employment-organization" class="form-control" value="<%= employment.organization.name %>" >  <br>
+                                                <% } else { %>
+                                                    <input name="employment-organization" class="form-control" value="" >  <br>
+                                                <% } %>
+                                                
+                                                <label class="label" for="employment-description">
+                                                    <h6 class="card-subtitle mb-2 text-muted">Rollbeskrivning</h6>
+                                                </label>
+                                                <% if (employment.description) { %>
+                                                    <input name="employment-description" class="form-control" value="<%= employment.description %>" >  <br>
+                                                <% } else { %>
+                                                    <input name="employment-description" class="form-control" value="" >  <br>
+                                                <% } %>
+                                            </div>
                                         </div>
-                                    </div>
-                                <% }) %>
+                                    <% }) %>
+                                <% } %>
                             <% } %>
 
                             <div>
@@ -155,14 +157,16 @@
                             </label>
                         </div>
                         <div class="card-body">
-                            <% if (get('data.profile.qualifications')) { %>
-                                <% data.profile.qualifications.forEach((qualification) => { %>
-                                    <% if (qualification.competencyName) { %>
-                                        <input name="qualification-competency-name" class="form-control" value="<%= qualification.competencyName %>" >  <br>
-                                    <% } else { %>
-                                        <input name="qualification-competency-name" class="form-control" value="" >  <br>
-                                    <% } %>
-                                <% }) %>
+                            <% if (get('data.profiles') && get('data.profiles').length > 0) { %>
+                                <% if (get('data.profiles')[0].qualifications) { %>
+                                    <% get('data.profiles')[0].qualifications.forEach((qualification) => { %>
+                                        <% if (qualification.competencyName) { %>
+                                            <input name="qualification-competency-name" class="form-control" value="<%= qualification.competencyName %>" >  <br>
+                                        <% } else { %>
+                                            <input name="qualification-competency-name" class="form-control" value="" >  <br>
+                                        <% } %>
+                                    <% }) %>
+                                <% } %>
                             <% } %>
 
                             <div>
