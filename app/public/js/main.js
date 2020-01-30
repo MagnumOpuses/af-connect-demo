@@ -9,7 +9,7 @@ function onResponse(envelope, err) {
   console.log(envelope);
 
   // Get the data(CV) from the envelope
-  let cv = envelope.data.data;
+  let cv = JSON.parse(envelope.value).data.data;
 
   // Adjust the legalId format from YYYY-MM-DD-xxxx to YYMMDD-xxxx
   // If the legalId does not match the expected format, no conversion

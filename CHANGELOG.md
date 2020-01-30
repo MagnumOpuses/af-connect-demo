@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Fixed EJS rendering of profile employment and qualification lists.
+- Adopted new envelope response structure from af-portability /cv endpoint.
 
 ### Changed
 
