@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const http = require("http");
+const health = require("./lib/health");
 
 let server = http.createServer(app);
 
@@ -34,6 +35,17 @@ let get = function() {
   }
   return root;
 };
+
+health.startServer({
+  host: config.host,
+  port: config.healthPort,
+  health: {
+    compatibleWith: {
+      "af-connect": "^1.0.0-beta",
+      "af-portability": "^1.0.0-beta"
+    }
+  }
+});
 
 app.get("/", (req, res) => {
   res.locals.get = get;

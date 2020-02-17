@@ -63,3 +63,4 @@ RUN chmod -R 777 /var/lib/nginx
 USER 10000
 CMD ["/usr/bin/supervisord", "-n"]
 EXPOSE 3000
+EXPOSE 9801
