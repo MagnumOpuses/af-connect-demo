@@ -11,7 +11,7 @@ pipeline {
       dockerfile {
         filename 'Dockerfile'
         dir '.'
-        label 'af-connect-demo'
+        //label 'af-connect-demo'
         //additionalBuildArgs  '--build-arg version=1.0.2'
         //args '-v /tmp:/tmp'
       }
