@@ -6,7 +6,8 @@ def templateName = 'af-connect-demo'
 // and "openshift" directive/closure from the OpenShift Client Plugin for Jenkins.  Otherwise, the declarative pipeline engine
 // will not be fully engaged.
 pipeline {
-  agent {
+  agent any
+  /*agent {
     // Equivalent to "docker build -f Dockerfile.build --build-arg version=1.0.2 ./build/
       dockerfile {
         filename 'Dockerfile'
@@ -16,6 +17,7 @@ pipeline {
         //args '-v /tmp:/tmp'
       }
   }
+  */
   options {
     // set a timeout of 20 minutes for this pipeline
     timeout(time: 20, unit: 'MINUTES')
