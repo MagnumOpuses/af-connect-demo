@@ -1,0 +1,70 @@
+kind: DeploymentConfig
+apiVersion: apps.openshift.io/v1
+metadata:
+  name: af-connect-demo
+  namespace: af-connect
+  labels:
+    app: af-connect-demo
+spec:
+  strategy:
+    type: Rolling
+    rollingParams:
+      updatePeriodSeconds: 1
+      intervalSeconds: 1
+      timeoutSeconds: 600
+      maxUnavailable: 25%
+      maxSurge: 25%
+    resources: {}
+    activeDeadlineSeconds: 21600
+  triggers:
+    - type: ConfigChange
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - af-connect-demo
+        from:
+          kind: ImageStreamTag
+          namespace: af-connect
+          name: 'af-connect-demo:latest'
+  replicas: 1
+  revisionHistoryLimit: 10
+  test: false
+  selector:
+    app: af-connect-demo
+    deploymentconfig: af-connect-demo
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: af-connect-demo
+        deploymentconfig: af-connect-demo
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+    spec:
+      containers:
+        - name: af-connect-demo
+          image: >-
+            image-registry.openshift-image-registry.svc:5000/af-connect-ext-int/af-connect-demo
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          env:
+            - name: HOST
+              value: localhost
+            - name: AF_PORTABILITY_URL
+              value: 'https://af-portability.test.services.jtech.se/'
+            - name: PORT
+              value: '3000'
+            - name: AF_CONNECT_URL
+              value: 'https://af-connect.test.services.jtech.se/'
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+

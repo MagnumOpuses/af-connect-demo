@@ -1,0 +1,48 @@
+kind: Build
+apiVersion: build.openshift.io/v1
+metadata:
+  namespace: af-connect
+  ownerReferences:
+    - apiVersion: build.openshift.io/v1
+      kind: BuildConfig
+      name: docker-build
+      uid: 2db2011b-0d60-465c-91db-db4680f0b57a
+      controller: true
+  labels:
+    buildconfig: af-connect-demo-build
+    name: af-connect-demo-build
+    openshift.io/build-config.name: af-connect-demo-build
+    openshift.io/build.start-policy: Serial
+spec:
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'af-connect-demo:latest'
+  resources: {}
+  strategy:
+    type: Docker
+    dockerStrategy:
+      env:
+        - name: HOST
+          value: localhost
+        - name: PORT
+          value: '3000'
+  postCommit: {}
+  serviceAccount: builder
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/MagnumOpuses/af-connect-demo.git'
+      ref: jenkinstest
+  revision:
+    type: Git
+    git:
+      commit: bf04af8f4f729897f87cecfe93f480b8a29524a7
+      author:
+        name: Mats Åström
+        email: mrastrom@hotmail.com
+      committer:
+        name: Mats Åström
+        email: mrastrom@hotmail.com
+      message: Changed
