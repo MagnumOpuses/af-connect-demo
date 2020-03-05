@@ -14,7 +14,7 @@ metadata:
     openshift.io/build-config.name: af-connect-demo-build
     openshift.io/build.start-policy: Serial
 spec:
-  nodeSelector: null
+  nodeSelector: {}
   output:
     to:
       kind: ImageStreamTag
