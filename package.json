@@ -8,7 +8,7 @@
     "url": "https://github.com/MagnumOpuses/af-connect-demo.git"
   },
   "dependencies": {
-    "check-dependencies": "^1.1.0",
+    "check-connectivity": "git+https://git@github.com/MagnumOpuses/check-connectivity.git",
     "dotenv": "^8.1.0",
     "ejs": "^2.7.1",
     "express": "^4.17.1",

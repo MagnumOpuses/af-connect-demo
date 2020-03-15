@@ -10,6 +10,14 @@ ENV USER=$ARG_USER
 ENV PASSWD=$ARG_PASSWD
 RUN echo 'kolla:' ${USER} ${PASSWD} ' buildName:'${buildName}
 
+RUN apk update && apk upgrade
+
+RUN apk add --no-cache --update -v \
+        supervisor \
+        nginx \
+        git \
+        curl
+
 WORKDIR /dist
 COPY . /dist
 RUN npm install
@@ -20,14 +28,6 @@ RUN mkdir /opt/nginx/www
 
 #Copy content do http server
 RUN ls -la /opt/nginx/www;
-
-RUN apk update && apk upgrade
-
-RUN apk add --no-cache --update -v \
-        supervisor \
-        nginx \
-        git \
-        curl
 
 RUN rm -rf /var/cache/apk/*
 
@@ -62,5 +62,5 @@ RUN chmod -R 777 /var/lib/nginx
 #######
 USER 10000
 CMD ["/usr/bin/supervisord", "-n"]
-EXPOSE 3000
-EXPOSE 9801
+EXPOSE 3000:3000
+EXPOSE 9800:9800
