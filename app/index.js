@@ -7,6 +7,17 @@ const http = require("http");
 
 let server = http.createServer(app);
 
+const Health = require("check-connectivity");
+const health = new Health({
+  host: config.host,
+  port: config.healthPort,
+  debug: true,
+  compatibleWith: {
+    "af-connect": "^1.0.0-beta",
+    "af-portability": "^1.0.0-beta"
+  }
+}).listen();
+
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 app.engine("html", ejs.__express);
