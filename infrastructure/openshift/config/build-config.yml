@@ -8,9 +8,9 @@ metadata:
   annotations:
     openshift.io/generated-by: OpenShiftNewBuild
 spec:
+  runPolicy: serial
   nodeSelector: {}
   triggers: []
-  resources: {}
   strategy:
     type: Docker
     dockerStrategy:
@@ -23,8 +23,6 @@ spec:
     to:
       kind: ImageStreamTag
       name: 'af-connect-demo:latest'
-  postCommit: {}
-  serviceAccount: builder
   source:
     type: Git
     git:
