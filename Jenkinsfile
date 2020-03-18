@@ -26,7 +26,7 @@ pipeline {
                 expression {
                     openshift.withCluster() {
                         openshift.withProject("${cicdProjectNamespace}") {
-                            return !openshift.selector("bc", "${applicationName}").exists();
+                            return !openshift.selector("bc", "${artifactName}").exists();
                         }
                     }
                 }
@@ -46,7 +46,7 @@ pipeline {
                 script {
                     openshift.withCluster() {
                         openshift.withProject("${cicdProjectNamespace}") {
-                            sh "oc start-build ${applicationName} --follow"
+                            sh "oc start-build ${artifactName} --follow"
                         }
                     }
                 }
@@ -57,7 +57,7 @@ pipeline {
                 expression {
                     openshift.withCluster() {
                         openshift.withProject("${stageProjectNamespace}") {
-                            return !openshift.selector("dc", "${applicationName}").exists();
+                            return !openshift.selector("dc", "${artifactName}").exists();
                         }
                     }
                 }
