@@ -8,7 +8,7 @@ metadata:
   annotations:
     openshift.io/generated-by: OpenShiftNewBuild
 spec:
-  runPolicy: serial
+  runPolicy: Serial
   nodeSelector: {}
   triggers: []
   strategy:
