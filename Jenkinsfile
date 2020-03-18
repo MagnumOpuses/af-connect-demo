@@ -46,27 +46,7 @@ pipeline {
                 script {
                     openshift.withCluster() {
                         openshift.withProject("${cicdProjectNamespace}") {
-                            sh "oc start-build ${artifactName} --follow"
-                        }
-                    }
-                }
-            }
-        }
-        stage('Deploy Image') {
-            when {
-                expression {
-                    openshift.withCluster() {
-                        openshift.withProject("${stageProjectNamespace}") {
-                            return !openshift.selector("dc", "${artifactName}").exists();
-                        }
-                    }
-                }
-            }
-            steps {
-                script {
-                    openshift.withCluster() {
-                        openshift.withProject("${cicdProjectNamespace}") {
-                            sh "oc create -f ${dcFile}"
+                            sh "oc start-build ${artifactName}"
                         }
                     }
                 }
