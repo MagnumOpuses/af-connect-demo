@@ -2,7 +2,7 @@ kind: DeploymentConfig
 apiVersion: apps.openshift.io/v1
 metadata:
   name: af-connect-demo
-  namespace: af-connect
+  namespace: af-connect-stage
   labels:
     app: af-connect-demo
 spec:
@@ -25,7 +25,7 @@ spec:
           - af-connect-demo
         from:
           kind: ImageStreamTag
-          namespace: af-connect
+          namespace: af-connect-cicd
           name: 'af-connect-demo:latest'
   replicas: 1
   revisionHistoryLimit: 10
@@ -45,7 +45,7 @@ spec:
       containers:
         - name: af-connect-demo
           image: >-
-            image-registry.openshift-image-registry.svc:5000/af-connect-ext-int/af-connect-demo
+            image-registry.openshift-image-registry.svc:5000/af-connect-cicd/af-connect-demo
           ports:
             - containerPort: 3000
               protocol: TCP
