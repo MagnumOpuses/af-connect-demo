@@ -1,6 +1,7 @@
-def devProjectNamespace = "af-connect-stage"
+def stageProjectNamespace = "af-connect-stage"
 def cicdProjectNamespace = "af-connect-cicd"
 def bcFile = "./infrastructure/openshift/config/build-config.yml"
+def dcFile = "./infrastructure/openshift/config/deployment-config.yml"
 def artifactName = "af-connect-demo"
 def gitRepo = 'https://github.com/MagnumOpuses/af-connect-demo.git'
 def ref = "jenkins/deploy"
@@ -45,7 +46,27 @@ pipeline {
                 script {
                     openshift.withCluster() {
                         openshift.withProject("${cicdProjectNamespace}") {
-                            sh "oc start-build ${bcFile} --follow"
+                            sh "oc start-build ${applicationName} --follow"
+                        }
+                    }
+                }
+            }
+        }
+        stage('Deploy Image') {
+            when {
+                expression {
+                    openshift.withCluster() {
+                        openshift.withProject("${stageProjectNamespace}") {
+                            return !openshift.selector("dc", "${applicationName}").exists();
+                        }
+                    }
+                }
+            }
+            steps {
+                script {
+                    openshift.withCluster() {
+                        openshift.withProject("${cicdProjectNamespace}") {
+                            sh "oc create -f ${dcFile}"
                         }
                     }
                 }
