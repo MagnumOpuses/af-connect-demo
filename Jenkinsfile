@@ -1,10 +1,6 @@
-def stageProjectNamespace = "af-connect-stage"
 def cicdProjectNamespace = "af-connect-cicd"
 def bcFile = "./infrastructure/openshift/config/build-config.yml"
-def dcFile = "./infrastructure/openshift/config/deployment-config.yml"
 def artifactName = "af-connect-demo"
-def gitRepo = 'https://github.com/MagnumOpuses/af-connect-demo.git'
-def ref = "jenkins/deploy"
 
 pipeline {
     agent any
