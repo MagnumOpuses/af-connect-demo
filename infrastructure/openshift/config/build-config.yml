@@ -3,13 +3,13 @@ apiVersion: build.openshift.io/v1
 metadata:
   namespace: af-connect-cicd
   name: af-connect-demo
+  labels:
+    build: af-connect-demo
+  annotations:
+    openshift.io/generated-by: OpenShiftNewBuild
 spec:
   nodeSelector: {}
   triggers: []
-  output:
-    to:
-      kind: ImageStreamTag
-      name: 'af-connect-demo:latest'
   resources: {}
   strategy:
     type: Docker
@@ -19,6 +19,10 @@ spec:
           value: localhost
         - name: PORT
           value: '3000'
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'af-connect-demo:latest'
   postCommit: {}
   serviceAccount: builder
   source:

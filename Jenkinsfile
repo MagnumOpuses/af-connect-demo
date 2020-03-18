@@ -46,7 +46,7 @@ pipeline {
                 script {
                     openshift.withCluster() {
                         openshift.withProject("${cicdProjectNamespace}") {
-                            sh "oc start-build ${artifactName}"
+                            sh "oc start-build ${artifactName} --wait"
                         }
                     }
                 }
