@@ -1,6 +1,6 @@
 def cicdProjectNamespace = "af-connect-cicd"
-def bcFile = "./infrastructure/openshift/config/build-config.yml"
-def artifactName = "af-connect-demo"
+def template = "./infrastructure/openshift/template.yml"
+def applicationName = "af-connect-demo"
 
 pipeline {
     agent any
@@ -17,21 +17,12 @@ pipeline {
                 }
             }
         }
-        stage('Create Image Builder') {
-            when {
-                expression {
-                    openshift.withCluster() {
-                        openshift.withProject("${cicdProjectNamespace}") {
-                            return !openshift.selector("bc", "${artifactName}").exists();
-                        }
-                    }
-                }
-            }
+        stage('Create Application Template') {
             steps {
                 script {
                     openshift.withCluster() {
                         openshift.withProject("${cicdProjectNamespace}") {
-                            sh "oc create -f ${bcFile}"
+                            openshift.newApp(template, "-p APPLICATION_NAME=${applicationName}")
                         }
                     }
                 }
@@ -42,7 +33,12 @@ pipeline {
                 script {
                     openshift.withCluster() {
                         openshift.withProject("${cicdProjectNamespace}") {
-                            sh "oc start-build ${artifactName} --wait"
+                            def builds = openshift.selector("bc", applicationName).related('builds')
+                            timeout(5) { 
+                                builds.untilEach(1) {
+                                    return (it.object().status.phase == "Complete")
+                                }
+                            }
                         }
                     }
                 }
