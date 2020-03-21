@@ -18,6 +18,15 @@ pipeline {
             }
         }
         stage('Create Application Template') {
+            when {
+                expression {
+                    openshift.withCluster() {
+                        openshift.withProject("${cicdProjectNamespace}") {
+                            return !openshift.selector("template", "${applicationName}").exists();
+                        }
+                    }
+                }
+            }
             steps {
                 script {
                     openshift.withCluster() {
