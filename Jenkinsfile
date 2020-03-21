@@ -42,12 +42,7 @@ pipeline {
                 script {
                     openshift.withCluster() {
                         openshift.withProject("${cicdProjectNamespace}") {
-                            def builds = openshift.selector("bc", applicationName).related('builds')
-                            timeout(5) { 
-                                builds.untilEach(1) {
-                                    return (it.object().status.phase == "Complete")
-                                }
-                            }
+                            openshift.selector("bc", "${applicationName}").startBuild("--wait=true")
                         }
                     }
                 }
