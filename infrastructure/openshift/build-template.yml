@@ -1,7 +1,7 @@
 kind: Template
 apiVersion: v1
 metadata:
-    name: af-connect-demo
+    name: '${APPLICATION_NAME}'
     annotations:
         openshift.io/display-name: 'AF-Connect Demo Site for Product Demonstration'
         tags: 'af-connect-demo,demo-site,nodejs'
