@@ -1,5 +1,5 @@
 def cicdProjectNamespace = "af-connect-cicd"
-def template = "./infrastructure/openshift/template.yml"
+def template = "./infrastructure/openshift/build-template.yml"
 def applicationName = "af-connect-demo"
 
 pipeline {
