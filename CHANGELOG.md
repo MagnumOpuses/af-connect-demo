@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Using 'check-connectivity' module to serve health endpoint.
 
+### Changed
+
+- Updated "check-connectivity" package to version, commit: 8a073c1
+
 ## [1.0.0-beta]
 
 ### Fixed
