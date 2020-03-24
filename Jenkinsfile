@@ -31,7 +31,7 @@ pipeline {
                 script {
                     openshift.withCluster() {
                         openshift.withProject("${cicdProjectNamespace}") {
-                            openshift.newApp(template, "-p APPLICATION_NAME=${applicationName}")
+                            openshift.newApp(template, "-p APPLICATION_NAME=${applicationName}", "-p VERSION_TAG=${BUILD_NUMBER}")
                         }
                     }
                 }

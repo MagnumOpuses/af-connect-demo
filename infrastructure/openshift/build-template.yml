@@ -46,7 +46,7 @@ objects:
             output:
                 to:
                     kind: ImageStreamTag
-                    name: '${APPLICATION_NAME}:latest'
+                    name: '${APPLICATION_NAME}:${VERSION_TAG}'
             triggers: []
             nodeSelector: {}
 parameters:
@@ -104,3 +104,6 @@ parameters:
         name: APPLICATION_PORT
         value: "3000"
         from: '[0-9]{4}'
+    - 
+        name: VERSION_TAG
+        value: "no_version"
