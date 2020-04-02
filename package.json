@@ -1,6 +1,6 @@
 {
   "name": "af-connect-demo",
-  "version": "1.0.0-beta",
+  "version": "1.1.0-beta",
   "description": "AF Connect Demo",
   "main": "index.js",
   "repository": {
