@@ -6,6 +6,18 @@ const bodyParser = require("body-parser");
 const http = require("http");
 
 let server = http.createServer(app);
+const logger = require("./lib/logger");
+
+const Health = require("check-connectivity");
+const health = new Health({
+  host: config.host,
+  port: config.healthPort,
+  debug: true,
+  compatibleWith: {
+    "af-connect": "^1.0.0-beta",
+    "af-portability": "^1.0.0-beta"
+  }
+}).listen();
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
@@ -19,6 +31,8 @@ app.use("/js", express.static(__dirname + "/public/js"));
 app.use("/fonts", express.static(__dirname + "/public/fonts"));
 app.use("/vendor", express.static(__dirname + "/public/vendor"));
 app.use("/favicon.ico", express.static(__dirname + "/public/favicon.ico"));
+
+app.use(logger);
 
 // Helper function to check existance and get nested properties
 let get = function() {

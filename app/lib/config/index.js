@@ -4,6 +4,7 @@ dotenv.config();
 module.exports = {
   host: process.env.HOST || "af-connect.local",
   port: process.env.PORT || 3000,
+  healthPort: process.env.HEALTH_PORT || 9800,
   afPortabilityUrl:
     process.env.AF_PORTABILITY_URL || "https://af-connect.local:8080",
   afPortabilityApiKey:
