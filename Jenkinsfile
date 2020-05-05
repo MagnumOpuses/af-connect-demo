@@ -11,13 +11,13 @@ pipeline {
                 script {
                     openshift.withCluster() {
                         openshift.withProject("${cicdProjectNamespace}") {
-                            echo "Using project: ${openshift.project()} for jenkins testing purpose ${BUILD_NUMBER}"
+                            echo "Using project: ${openshift.project()}"
                         }
                     }
                 }
             }
         }
-        /*
+        
         stage('Create Application Template') {
             when {
                 expression {
@@ -49,6 +49,18 @@ pipeline {
                 }
             }
         }
-        */
+
+        stage('Tag Image') {
+            steps {
+                script {
+                    openshift.withCluster() {
+                        openshift.withProject("${cicdProjectNamespace}") {
+                            openshift.tag("${applicationName}:latest", "${applicationName}:dev-${BUILD_NUMBER}")
+                        }
+                    }
+                }
+            }
+        }
+        
     }
 }
