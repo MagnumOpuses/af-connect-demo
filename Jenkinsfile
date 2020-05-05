@@ -61,11 +61,15 @@ pipeline {
         stage('Tag Image') {
             steps {
                 script {
+                    sh "oc tag ${applicationName}:dev-${BUILD_NUMBER-1} -d"
+                    sh "oc tag ${applicationName}:latest ${applicationName}:dev-${BUILD_NUMBER}"
+                    /*
                     openshift.withCluster() {
                         openshift.withProject("${cicdProjectNamespace}") {
                             openshift.tag("${applicationName}:latest", "${applicationName}:dev-${BUILD_NUMBER}")
                         }
                     }
+                    */
                 }
             }
         }
