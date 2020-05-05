@@ -50,6 +50,14 @@ pipeline {
             }
         }
 
+        stage('Approval') {
+            steps {
+                timeout(time: 30, unit: 'DAYS') {
+                    input message: "Start Building image ?"
+                }
+            }
+        }
+
         stage('Tag Image') {
             steps {
                 script {
