@@ -40,11 +40,14 @@ pipeline {
         }
         stage('Change Source Ref to Stage') {
             steps {
-                openshift.withCluster() {
-                    def p = openshift.selector('bc/af-connect-demo').object()
-                    p.spec.source.git.ref = 'stage'
-                    openshift.apply(p)
+                script {
+                    openshift.withCluster() {
+                        def p = openshift.selector('bc/af-connect-demo').object()
+                        p.spec.source.git.ref = 'stage'
+                        openshift.apply(p)
+                    }
                 }
+                
             }
         } 
         /*
