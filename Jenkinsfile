@@ -32,12 +32,22 @@ pipeline {
                 script {
                     openshift.withCluster() {
                         openshift.withProject("${cicdProjectNamespace}") {
-                            openshift.newApp(template, "-p APPLICATION_NAME=${applicationName}", "-p VERSION_TAG=${BUILD_NUMBER}")
+                            openshift.newApp(template)
                         }
                     }
                 }
             }
         }
+        stage('Change Source Ref to Stage') {
+            steps {
+                openshift.withCluster() {
+                    def p = openshift.selector('bc/af-connect-demo').object()
+                    p.spec.source.git.ref = 'stage'
+                    openshift.apply(p)
+                }
+            }
+        } 
+        /*
         stage('Build Image') {
             steps {
                 script {
@@ -50,29 +60,21 @@ pipeline {
             }
         }
 
-        stage('Approval') {
-            steps {
-                timeout(time: 30, unit: 'DAYS') {
-                    input message: "Start Building image ?"
-                }
-            }
-        }
-
         stage('Tag Image') {
             steps {
                 script {
-                    sh "oc tag ${applicationName}:dev-${BUILD_NUMBER-1} -d"
-                    sh "oc tag ${applicationName}:latest ${applicationName}:dev-${BUILD_NUMBER}"
-                    /*
+                    sh "oc tag ${applicationName}:latest ${applicationName}:stage-${BUILD_NUMBER}"
+                    
                     openshift.withCluster() {
                         openshift.withProject("${cicdProjectNamespace}") {
                             openshift.tag("${applicationName}:latest", "${applicationName}:dev-${BUILD_NUMBER}")
                         }
                     }
-                    */
+                    
                 }
             }
         }
+        */
         
     }
 }
