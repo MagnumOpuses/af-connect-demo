@@ -43,11 +43,17 @@ pipeline {
                 script {
                     openshift.withCluster() {
                         def p = openshift.selector('bc/af-connect-demo').object()
-                        p.spec.source.git.ref = 'stage'
+                        p.spec.source.git.ref = 'master'
                         openshift.apply(p)
                     }
                 }
-                
+                script {
+                    openshift.withCluster() {
+                        def imageTag = openshift.selector('templates/af-connect-demo').object()
+                        def tag = imageTag.parameters[0].value
+                        echo "image tag:pre-release:${tag}"
+                    }
+                }
             }
         } 
         /*
