@@ -1,5 +1,4 @@
 def cicdProjectNamespace = "af-connect-cicd"
-def template = "./infrastructure/openshift/build-template.yml"
 def applicationName = "af-connect-demo"
 
 pipeline {
@@ -32,6 +31,7 @@ pipeline {
                 script {
                     openshift.withCluster() {
                         openshift.withProject("${cicdProjectNamespace}") {
+                            def template = openshift.selector("templates/af-connect-demo")
                             openshift.newApp(template)
                         }
                     }
