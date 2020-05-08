@@ -31,31 +31,12 @@ pipeline {
                 script {
                     openshift.withCluster() {
                         openshift.withProject("${cicdProjectNamespace}") {
-                            openshift.newApp("--template=af-connect-demo")
+                            openshift.newApp("--template=${applicationName}")
                         }
                     }
                 }
             }
         }
-        stage('Change Source Ref to Stage') {
-            steps {
-                script {
-                    openshift.withCluster() {
-                        def p = openshift.selector('bc/af-connect-demo').object()
-                        p.spec.source.git.ref = 'master'
-                        openshift.apply(p)
-                    }
-                }
-                script {
-                    openshift.withCluster() {
-                        def imageTag = openshift.selector('templates/af-connect-demo').object()
-                        def tag = imageTag.parameters[0].value
-                        echo "image tag:pre-release:${tag}"
-                    }
-                }
-            }
-        } 
-        /*
         stage('Build Image') {
             steps {
                 script {
@@ -71,18 +52,14 @@ pipeline {
         stage('Tag Image') {
             steps {
                 script {
-                    sh "oc tag ${applicationName}:latest ${applicationName}:stage-${BUILD_NUMBER}"
-                    
                     openshift.withCluster() {
                         openshift.withProject("${cicdProjectNamespace}") {
-                            openshift.tag("${applicationName}:latest", "${applicationName}:dev-${BUILD_NUMBER}")
+                            openshift.tag("${applicationName}:latest", "${applicationName}:build-${BUILD_NUMBER}")
                         }
                     }
                     
                 }
             }
         }
-        */
-        
     }
 }
