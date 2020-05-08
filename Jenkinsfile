@@ -31,8 +31,7 @@ pipeline {
                 script {
                     openshift.withCluster() {
                         openshift.withProject("${cicdProjectNamespace}") {
-                            def template = openshift.selector('templates/af-connect-demo')
-                            openshift.newApp(template)
+                            openshift.newApp("--template=af-connect-demo")
                         }
                     }
                 }
