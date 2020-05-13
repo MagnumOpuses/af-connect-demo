@@ -1,7 +1,17 @@
 def cicdProjectNamespace = "af-connect-cicd"
 def applicationName = "af-connect-demo"
+def COLOR_MAP = [
+    'SUCCESS': 'good', 
+    'FAILURE': 'danger',
+]
+def slackChannel = '#gravity-monitoring'
 
 pipeline {
+    environment {
+        // test variable: 0=success, 1=fail; must be string
+        doError = '0'
+        BUILD_USER = ''
+    }
     agent any
 
     stages {
@@ -37,6 +47,19 @@ pipeline {
                 }
             }
         }
+
+        stage('Change Source Ref to Stage') {
+            steps {
+                script {
+                    openshift.withCluster() {
+                        def p = openshift.selector("bc/${applicationName}").object()
+                        p.spec.source.git.ref = 'stage'
+                        openshift.apply(p)
+                    }
+                }
+            }
+        }
+        
         stage('Build Image') {
             steps {
                 script {
@@ -60,6 +83,20 @@ pipeline {
                     
                 }
             }
+        }
+    }
+    // Post-build actions
+    post {
+        success {
+            slackSend channel: "${slackChannel}",
+                color: COLOR_MAP[currentBuild.currentResult],
+                message: "*${currentBuild.currentResult}:* Job ${applicationName} stage build \n Image tagged with build-${BUILD_NUMBER} tag \n More info at: ${env.BUILD_URL}"
+        }
+
+        failure {
+            slackSend channel: "${slackChannel}",
+                color: COLOR_MAP[currentBuild.currentResult],
+                message: "*${currentBuild.currentResult}:* Job ${applicationName} stage build\n More info at: ${env.BUILD_URL}"
         }
     }
 }
