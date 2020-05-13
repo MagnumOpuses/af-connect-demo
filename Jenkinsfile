@@ -6,10 +6,6 @@ def COLOR_MAP = [
 ]
 def slackChannel = '#gravity-monitoring'
 
-def getBuildUser() {
-    return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
-}
-
 pipeline {
     environment {
         // test variable: 0=success, 1=fail; must be string
@@ -92,12 +88,9 @@ pipeline {
     // Post-build actions
     post {
         success {
-            script {
-                BUILD_USER = getBuildUser()
-            }
             slackSend channel: "${slackChannel}",
                 color: COLOR_MAP[currentBuild.currentResult],
-                message: "*${currentBuild.currentResult}:* Job ${applicationName} stage build\n More info at: ${env.BUILD_URL}"
+                message: "*${currentBuild.currentResult}:* Job ${applicationName} stage build \n Image tagged with build-${NUMBER} tag \n More info at: ${env.BUILD_URL}"
         }
 
         failure {
