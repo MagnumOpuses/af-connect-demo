@@ -52,7 +52,7 @@ pipeline {
             steps {
                 script {
                     openshift.withCluster() {
-                        def p = openshift.selector("bc/af-connect-demo").object()
+                        def p = openshift.selector("bc/${applicationName}").object()
                         p.spec.source.git.ref = 'stage'
                         openshift.apply(p)
                     }
