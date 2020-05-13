@@ -90,7 +90,7 @@ pipeline {
         success {
             slackSend channel: "${slackChannel}",
                 color: COLOR_MAP[currentBuild.currentResult],
-                message: "*${currentBuild.currentResult}:* Job ${applicationName} stage build \n Image tagged with build-${NUMBER} tag \n More info at: ${env.BUILD_URL}"
+                message: "*${currentBuild.currentResult}:* Job ${applicationName} stage build \n Image tagged with build-${BUILD_NUMBER} tag \n More info at: ${env.BUILD_URL}"
         }
 
         failure {
