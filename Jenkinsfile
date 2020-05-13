@@ -60,30 +60,30 @@ pipeline {
             }
         }
         
-        // stage('Build Image') {
-        //     steps {
-        //         script {
-        //             openshift.withCluster() {
-        //                 openshift.withProject("${cicdProjectNamespace}") {
-        //                     openshift.selector("bc", "${applicationName}").startBuild("--wait=true")
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
+        stage('Build Image') {
+            steps {
+                script {
+                    openshift.withCluster() {
+                        openshift.withProject("${cicdProjectNamespace}") {
+                            openshift.selector("bc", "${applicationName}").startBuild("--wait=true")
+                        }
+                    }
+                }
+            }
+        }
 
-        // stage('Tag Image') {
-        //     steps {
-        //         script {
-        //             openshift.withCluster() {
-        //                 openshift.withProject("${cicdProjectNamespace}") {
-        //                     openshift.tag("${applicationName}:latest", "${applicationName}:build-${BUILD_NUMBER}")
-        //                 }
-        //             }
+        stage('Tag Image') {
+            steps {
+                script {
+                    openshift.withCluster() {
+                        openshift.withProject("${cicdProjectNamespace}") {
+                            openshift.tag("${applicationName}:latest", "${applicationName}:build-${BUILD_NUMBER}")
+                        }
+                    }
                     
-        //         }
-        //     }
-        // }
+                }
+            }
+        }
     }
     // Post-build actions
     post {
