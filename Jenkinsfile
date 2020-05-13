@@ -37,29 +37,42 @@ pipeline {
                 }
             }
         }
-        stage('Build Image') {
-            steps {
-                script {
-                    openshift.withCluster() {
-                        openshift.withProject("${cicdProjectNamespace}") {
-                            openshift.selector("bc", "${applicationName}").startBuild("--wait=true")
-                        }
-                    }
-                }
-            }
-        }
 
-        stage('Tag Image') {
+        stage('Change Source Ref to Stage') {
             steps {
                 script {
                     openshift.withCluster() {
-                        openshift.withProject("${cicdProjectNamespace}") {
-                            openshift.tag("${applicationName}:latest", "${applicationName}:build-${BUILD_NUMBER}")
-                        }
+                        def p = openshift.selector("bc/af-connect-demo").object()
+                        p.spec.source.git.ref = 'stage'
+                        openshift.apply(p)
                     }
-                    
                 }
             }
         }
+        
+        // stage('Build Image') {
+        //     steps {
+        //         script {
+        //             openshift.withCluster() {
+        //                 openshift.withProject("${cicdProjectNamespace}") {
+        //                     openshift.selector("bc", "${applicationName}").startBuild("--wait=true")
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+
+        // stage('Tag Image') {
+        //     steps {
+        //         script {
+        //             openshift.withCluster() {
+        //                 openshift.withProject("${cicdProjectNamespace}") {
+        //                     openshift.tag("${applicationName}:latest", "${applicationName}:build-${BUILD_NUMBER}")
+        //                 }
+        //             }
+                    
+        //         }
+        //     }
+        // }
     }
 }
