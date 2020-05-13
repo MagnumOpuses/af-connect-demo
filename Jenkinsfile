@@ -1,7 +1,21 @@
 def cicdProjectNamespace = "af-connect-cicd"
 def applicationName = "af-connect-demo"
+def COLOR_MAP = [
+    'SUCCESS': 'good', 
+    'FAILURE': 'danger',
+]
+def slackChannel = '#gravity-monitoring'
+
+def getBuildUser() {
+    return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
+}
 
 pipeline {
+    environment {
+        // test variable: 0=success, 1=fail; must be string
+        doError = '0'
+        BUILD_USER = ''
+    }
     agent any
 
     stages {
@@ -74,5 +88,17 @@ pipeline {
         //         }
         //     }
         // }
+    }
+    // Post-build actions
+    post {
+        success {
+            script {
+                BUILD_USER = getBuildUser()
+            }
+            echo 'I will always say hello in the console.'
+            slackSend channel: "${slackChannel}",
+                color: COLOR_MAP[currentBuild.currentResult],
+                message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} by ${BUILD_USER}\n More info at: ${env.BUILD_URL}"
+        }
     }
 }
