@@ -69,6 +69,7 @@ app.get("/bare", (req, res) => {
 
 app.post("/cvForm", (req, res) => {
   res.locals.get = get;
+  console.log("Rendering: ", req.body);
   res.render("partials/cv-form", { data: req.body });
 });
 

@@ -8,7 +8,7 @@ function onResponse(envelope, err) {
 
   const parsedEnvelope = JSON.parse(envelope.value);
   console.log("Envelope: ", parsedEnvelope);
-  let cv = parsedEnvelope.data[0];
+  let cv = parsedEnvelope.transferObject.data[0];
 
   fetch("/cvForm", {
     method: "POST",
