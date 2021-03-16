@@ -8,7 +8,7 @@ AF Connect Demo is an example website that demonstrates the use-case of pre-fill
 
 ##### Versions, current dev state and future
 
-1.1.0-beta
+1.2.0-beta
 
 ##### Getting started
 
@@ -20,4 +20,4 @@ https://github.com/MagnumOpuses/af-connect-demo
 
 ##### Demo
 
-No demo yet.
+Well this kind of is the demo.

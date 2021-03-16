@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0-beta]
+
+### Added
+
+- 1.2.0-beta adds support for custom job title and company name parameters.
+
+### Changed
+
+- Updated "check-connectivity" package to version, commit: TBD
+
+- Updated package "af-connect-module" to version "1.2.0-beta"
+
 ## [1.1.0-beta]
 
 ### Added

@@ -25,7 +25,7 @@ Array.prototype.forEach.call(containers, container => {
 
   let config = {
     name: "af-connect-module",
-    version: "1.1.0-beta",
+    version: "1.2.0-beta",
     label: container.getAttribute("data-label") || "AF Connect",
     purpose: container.getAttribute("data-purpose") || undefined,
     jobTitle: container.getAttribute("data-job_title") || undefined,
