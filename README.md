@@ -1,6 +1,4 @@
-![alt text][logo]
-
-[logo]: https://github.com/MagnumOpuses/project-meta/blob/master/img/jobtechdev_black.png "JobTech dev logo"
+![](https://github.com/MagnumOpuses/project-meta/blob/master/img/jobtechdev_black.png?raw=true)
 
 [A JobTech Project](https://www.jobtechdev.se)
 
@@ -8,7 +6,7 @@
 
 AF Connect Demo is an example website that demonstrates the use-case of pre-filling forms with CV data from [AF Connect](https://github.com/MagnumOpuses/af-connect).
 
-This website's runtime environment is [Node.js](https://nodejs.org/) and is built using the web application framework is [Express](https://expressjs.com/).
+The runtime environment used for this web site is [Node.js](https://nodejs.org/) and is built using the [Express](https://expressjs.com/) web application framework.
 
 The web pages/views are rendered using the [EJS](https://ejs.co/) template engine and [Bootstrap](http://getbootstrap.com) for responsive layouting.
 
@@ -28,7 +26,7 @@ You need Administrative privilege to make this change
 
 ### Installation
 
-Acquire the source code from this repository and install all dependencies using [NPM](https://www.npmjs.com/).
+Acquire the source code from this repository and install all dependencies using [npm](https://www.npmjs.com/) (Node Package Manager):
 
 ```bash
 git clone https://github.com/MagnumOpuses/af-connect-demo.git
@@ -38,15 +36,13 @@ npm install
 
 #### Customized configuration
 
-Listed below are methods of overriding the default configuration with custom properties.
+Listed below are ways to override the default configuration with custom properties.
 
 _Read move about environment configuration here: [dotenv](https://github.com/motdotla/dotenv)_
 
 ##### Provide custom properties via configuration file
 
-1. Create an `.env` file at the root of the `af-connect-demo` directory with the following content.
-
-   This `.env` file is ignored by the rules set in `.gitignore`, therefore in this file you may freely customizable the deployment to your own needs.
+Create an `.env` file at the root of the `af-connect-demo` directory with the following content.
 
    ```
    HOST='localhost'
@@ -87,7 +83,7 @@ npm run dev
 
 ### Run the site on localhost
 
-To run it on your local computer you have to add a (self signed) certificate and a private key and put those entries in to the .env file.
+To run the demo app on your local computer you have to add a (self signed) certificate and a private key and put those entries into the .env file.
 
 ex.
 
@@ -107,6 +103,8 @@ npm run local
 ```
 
 ## Built with
+
+
 
 - [Node.js v10.15.3](https://nodejs.org/) (Runtime environment)
 - [NPM v6.4.1](https://www.npmjs.com/) (Node package manager)
