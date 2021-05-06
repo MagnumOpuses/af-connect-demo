@@ -18,18 +18,18 @@ const checkCompatability = (host, name, version, onIncompatible) => {
       }
     });
 };
-const containers = document.getElementsByClassName("af-connect-module");
 
+const containers = document.getElementsByClassName("af-connect-module");
 Array.prototype.forEach.call(containers, container => {
   container.style["display"] = "inline";
 
   let config = {
     name: "af-connect-module",
-    version: "gunnar-demo-1",
+    version: "1.1.0-beta",
     label: container.getAttribute("data-label") || "AF Connect",
-    purpose: container.getAttribute("data-purpose") || "Ansökan till tjänst",
-    jobTitle: container.getAttribute("data-job_title") || "Tandläkare",
-    companyName: container.getAttribute("data-company_name") || "Landstinget Västmanland",
+    purpose: container.getAttribute("data-purpose") || undefined,
+    jobTitle: container.getAttribute("data-job_title") || undefined,
+    companyName: container.getAttribute("data-company_name") || undefined,
     pollRate: container.getAttribute("data-poll_rate") || "1000", // 1 second
     pollRetry: container.getAttribute("data-poll_retry") || "10",
     timeout: container.getAttribute("data-poll_timeout") || "300000", // 5 minutes
@@ -59,7 +59,7 @@ Array.prototype.forEach.call(containers, container => {
       config.onWarning(connectModule.CODE.E006);
     }
   });
-1
+
   // Check compatability with remote af portability service
   checkCompatability(
     config.afPortabilityUrl,
@@ -158,8 +158,8 @@ const fetchSequence = (config, button) => {
     .then(sessionToken => {
       return new Promise((resolve, reject) => {
         window
-          .open(config.afConnectUrl + "?sessionToken=" + sessionToken, "Arbetsförmedlingen Connect Once", "location=yes,resizable=no,scrollbars=no,screenX=10,screenY=10,innerWidth=800,innerHeight=800,status=off,toolbar=off,location=off" )
-          .focus();
+            .open(config.afConnectUrl + "?sessionToken=" + sessionToken, "Arbetsförmedlingen Connect Once", "location=yes,resizable=no,scrollbars=no,screenX=10,screenY=10,innerWidth=800,innerHeight=800,status=off,toolbar=off,location=off" )
+            .focus();
 
         let retry = 0;
         let retryMax = config.pollRetry;
