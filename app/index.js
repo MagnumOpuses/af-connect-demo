@@ -53,6 +53,7 @@ app.get("/", (req, res) => {
   res.locals.get = get;
   res.render("pages/index", {
     companyName: config.companyName,
+    jobTitle: config.jobTitle,
     afConnectUrl: config.afConnectUrl,
     afPortabilityUrl: config.afPortabilityUrl,
     afPortabilityApiKey: config.afPortabilityApiKey
