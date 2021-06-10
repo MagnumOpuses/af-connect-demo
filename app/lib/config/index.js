@@ -2,6 +2,8 @@
 const dotenv = require("dotenv");
 dotenv.config();
 module.exports = {
+  companyName: process.env.COMPANY_NAME || "default-company",
+  jobTitle: process.env.JOB_TITLE || "default-job",
   host: process.env.HOST || "af-connect.local",
   port: process.env.PORT || 3000,
   healthPort: process.env.HEALTH_PORT || 9800,

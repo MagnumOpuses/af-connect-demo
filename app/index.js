@@ -2,7 +2,6 @@ const config = require("./lib/config");
 const ejs = require("ejs");
 const express = require("express");
 const app = express();
-const bodyParser = require("body-parser");
 const http = require("http");
 
 let server = http.createServer(app);
@@ -22,8 +21,9 @@ const health = new Health({
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 app.engine("html", ejs.__express);
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+
+app.use(express.urlencoded());
+app.use(express.json());
 
 app.use("/css", express.static(__dirname + "/public/css"));
 app.use("/img", express.static(__dirname + "/public/img"));
@@ -52,6 +52,8 @@ let get = function() {
 app.get("/", (req, res) => {
   res.locals.get = get;
   res.render("pages/index", {
+    companyName: config.companyName,
+    jobTitle: config.jobTitle,
     afConnectUrl: config.afConnectUrl,
     afPortabilityUrl: config.afPortabilityUrl,
     afPortabilityApiKey: config.afPortabilityApiKey
@@ -60,6 +62,7 @@ app.get("/", (req, res) => {
 
 app.get("/bare", (req, res) => {
   res.locals.get = get;
+  console.log("render:pages/bare");
   res.render("pages/bare", {
     afConnectUrl: config.afConnectUrl,
     afPortabilityUrl: config.afPortabilityUrl,
@@ -69,6 +72,7 @@ app.get("/bare", (req, res) => {
 
 app.post("/cvForm", (req, res) => {
   res.locals.get = get;
+  console.log("cvForm: Rendering: ", req.body);
   res.render("partials/cv-form", { data: req.body });
 });
 
