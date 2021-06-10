@@ -28,12 +28,6 @@
           />
           <br />
 
-          <label class="label" for="legalId">
-            <h6 class="card-subtitle mb-2 text-muted">Personnummer</h6>
-          </label>
-          <input type="text" name="legalId" class="form-control" value="" />
-          <br />
-
           <div class="card bg-light">
             <div class="card-header">
               <label class="label" for="email">
@@ -41,8 +35,8 @@
               </label>
             </div>
             <div class="card-body">
-              <% if (get('data.person.communication.email.item')) { %> <%
-              data.person.communication.email.item.forEach((email) => { %>
+              <% if (get('data.person.communication.email')) { %> <%
+              data.person.communication.email.forEach((email) => { %>
               <input
                 type="email"
                 name="email"
@@ -71,8 +65,8 @@
               </label>
             </div>
             <div class="card-body">
-              <% if (get('data.person.communication.phone.item')) { %> <%
-              data.person.communication.phone.item.forEach((phone) => { %>
+              <% if (get('data.person.communication.phone')) { %> <%
+              data.person.communication.phone.forEach((phone) => { %>
               <input
                 name="phone"
                 class="form-control"
@@ -99,8 +93,8 @@
               </label>
             </div>
             <div class="card-body">
-              <% if (get('data.person.communication.address.item')) { %> <%
-              data.person.communication.address.item.forEach((address) => { %>
+              <% if (get('data.person.communication.address')) { %> <%
+              data.person.communication.address.forEach((address) => { %>
               <input
                 name="address-line"
                 class="form-control"
@@ -150,8 +144,8 @@
           <label class="label" for="description">
             <h6 class="card-subtitle mb-2 text-muted">Beskrivning</h6>
           </label>
-          <% if (get('data.profiles.item', '')) { %> <%
-          get('data.profiles.item').forEach(profile => { %>
+          <% if (get('data.profiles', '')) { %> <%
+          get('data.profiles').forEach(profile => { %>
           <input
             type="text"
             name="description"
@@ -159,8 +153,8 @@
             value="<%= profile.profileName %>"
           />
           <br />
-          <% }) %> <% } %> <% if (get('data.profiles.item', '')) { %> <%
-          get('data.profiles.item').forEach(profile => { %>
+          <% }) %> <% } %> <% if (get('data.profiles', '')) { %> <%
+          get('data.profiles').forEach(profile => { %>
           <div class="card bg-light">
             <div class="card-header">
               <label class="label" for="employment">
@@ -168,15 +162,15 @@
               </label>
             </div>
             <div class="card-body">
-              <% profile.employment.item.forEach((employment) => { %>
+              <% profile.employment.forEach((employment) => { %>
               <div class="card">
                 <div class="card-body">
                   <label class="label" for="employment-title">
                     <h6 class="card-subtitle mb-2 text-muted">Roll</h6>
                   </label>
                   <% if (employment.positionHistories &&
-                  employment.positionHistories.item) { %> <%
-                  employment.positionHistories.item.forEach((position) => { %>
+                  employment.positionHistories) { %> <%
+                  employment.positionHistories.forEach((position) => { %>
                   <input
                     name="employment-title"
                     class="form-control"
@@ -218,9 +212,8 @@
                       Rollbeskrivning
                     </h6>
                   </label>
-                  <% if (employment.descriptions &&
-                  employment.descriptions.item) { %> <%
-                  employment.descriptions.item.forEach((description) => { %>
+                  <% if (employment.descriptions && employment.descriptions) {
+                  %> <% employment.descriptions.forEach((description) => { %>
                   <input
                     name="employment-description"
                     class="form-control"
@@ -250,8 +243,8 @@
               </div>
             </div>
           </div>
-          <% }) %> <% } %> <% if (get('data.profiles.item', '')) { %> <%
-          get('data.profiles.item').forEach(profile => { %>
+          <% }) %> <% } %> <% if (get('data.profiles', '')) { %> <%
+          get('data.profiles').forEach(profile => { %>
           <div class="card bg-light">
             <div class="card-header">
               <label class="label" for="qualifications">
@@ -259,8 +252,8 @@
               </label>
             </div>
             <div class="card-body">
-              <% profile.qualifications.item.forEach((qualification) => { %> <%
-              if (qualification.competencyName) { %>
+              <% profile.qualifications.forEach((qualification) => { %> <% if
+              (qualification.competencyName) { %>
               <input
                 name="qualification-competency-name"
                 class="form-control"
