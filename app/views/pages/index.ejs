@@ -4,8 +4,9 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel=”stylesheet” href=”https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link href="vendor/bootstrap-4.3.1-dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href=”https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+
     <link href="css/main.css" rel="stylesheet"/>
     <title>AF Connect Demo</title>
     <style>
@@ -15,13 +16,16 @@
         .site-button {
             margin-bottom: 1rem;
         }
+        .popover {
+            height: 39px;
+        }
     </style>
 </head>
 <body>
     <div
         style="background-color: #aaa; color: #eee; font-weight: 600; padding:4px; text-align: center"
     >
-        This page does not operate on production data. Find more information at
+        This page is for demonstration purposes only. Find more information at
         <a
             style="color: #fff"
             href="https://github.com/MagnumOpuses/af-connect-module"
@@ -36,10 +40,10 @@
                         <p class="site-name"><img src="/img/site-logo.png"> XXXXXX</p>
                     </div>
                     <div class="col-md-6 pt-2 mt-2 site-control">
-                        <div class="site-control-block">
+                        <div class="site-control-block" tabindex="0">
                             <i class="site-nav-item">Hem</i>
                             <i class="site-nav-item">Alla jobb</i>
-                            <input type="button" class="site-button" value="Logga ut"></input>
+                            <input type="button" class="site-button" data-toggle="popover" data-placement="bottom" title="Button as demo only" value="Logga ut"/>
                         </div>
                     </div>
                 </div>
@@ -80,14 +84,35 @@
         </div>
     </div>
     <script src="js/main.js"></script>
-    <script src="vendor/jquery-3.4.1/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="vendor/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="vendor/af-connect-module-1.2.0-beta-dist/af-connect-module.bundle.js"></script>
+
     <script type="text/javascript">
         function saveCV() {
             alert("Your CV has been saved. Thank you for your application.");
         }
     </script>
+
+    <script>
+        let _timer=0;
+        $('.site-button').popover().click(function () {
+            console.log("click");
+            if (_timer !== 0)
+                console.log("undefined")
+            else {
+                clearTimeout(_timer);
+                console.log("timer cleared");
+                _timer=0;
+            }
+            console.log("setting timer");
+            let _timer = setTimeout(function() {
+                console.log("timeout !");
+                $('.site-button').popover('hide');
+            }, 3000);
+        });
+    </script>
+
 </body>
 </html>
